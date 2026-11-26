@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>ZEUS — ULTRA PROMAX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,9 +16,9 @@
 
         :root {
             --bg-body: #f5f0e8;
-            --bg-panel: rgba(255, 253, 249, 0.9);
-            --bg-card: rgba(248, 244, 237, 0.82);
-            --bg-input: rgba(240, 235, 225, 0.78);
+            --bg-panel: rgba(255, 253, 249, 0.92);
+            --bg-card: rgba(248, 244, 237, 0.85);
+            --bg-input: rgba(240, 235, 225, 0.82);
             --ink: #1e1c18;
             --ink-2: #4a4640;
             --ink-faint: #7c766a;
@@ -29,23 +29,28 @@
             --gold-shimmer: linear-gradient(135deg, #b8942e 0%, #d9b84a 45%, #9f7d25 100%);
             --line: rgba(184, 148, 46, 0.16);
             --success: #1a8a4a;
+            --warning: #c88719;
             --danger: #d93025;
             --radius-card: 22px;
-            --radius-input: 15px;
+            --radius-input: 14px;
             --font-main: 'Zain', sans-serif;
             --transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+            --sidebar-width: 260px;
+            --shadow-main: 0 16px 48px rgba(0, 0, 0, 0.08);
+            --shadow-overlay: 0 24px 64px rgba(0, 0, 0, 0.36);
         }
 
         [data-theme="dark"] {
             --bg-body: #110f0d;
             --bg-panel: rgba(24, 21, 18, 0.96);
-            --bg-card: rgba(38, 34, 29, 0.84);
-            --bg-input: rgba(48, 43, 37, 0.82);
+            --bg-card: rgba(38, 34, 29, 0.86);
+            --bg-input: rgba(48, 43, 37, 0.84);
             --ink: #f0ebe1;
             --ink-2: #c2b9aa;
             --ink-faint: #877f71;
             --line: rgba(184, 148, 46, 0.14);
             --gold-soft: rgba(184, 148, 46, 0.13);
+            --shadow-main: 0 16px 48px rgba(0, 0, 0, 0.45);
         }
 
         body {
@@ -59,18 +64,41 @@
             justify-content: center;
             padding: 20px;
             line-height: 1.65;
+            position: relative;
+            overflow-x: hidden;
             transition: background 0.3s, color 0.3s;
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 45%, rgba(184, 148, 46, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 55%, rgba(184, 148, 46, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ================= MAIN PANEL ================= */
         .panel {
-            max-width: 880px;
+            max-width: 920px;
             width: 100%;
             background: var(--bg-panel);
-            backdrop-filter: blur(18px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: var(--radius-card);
             border: 1px solid var(--line);
-            padding: 30px 34px;
-            box-shadow: 0 14px 44px rgba(0, 0, 0, 0.08);
+            padding: 30px 34px 26px;
+            box-shadow: var(--shadow-main);
+            position: relative;
+            z-index: 1;
+            animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px) scale(0.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .top {
@@ -81,6 +109,18 @@
             padding-bottom: 18px;
             gap: 14px;
             flex-wrap: wrap;
+            position: relative;
+        }
+
+        .top::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--gold-shimmer);
+            border-radius: 2px;
         }
 
         .brand-lock-btn {
@@ -88,32 +128,35 @@
             align-items: center;
             gap: 14px;
             background: none;
-            border: none;
+            border: 1px solid transparent;
             cursor: pointer;
-            padding: 4px 6px;
-            border-radius: 16px;
+            padding: 6px 10px;
+            border-radius: 18px;
             transition: var(--transition);
             user-select: none;
+            text-align: right;
         }
 
         .brand-lock-btn:hover {
             background: var(--gold-soft);
+            border-color: var(--line);
         }
 
         .zeus-emblem {
-            width: 58px;
-            height: 58px;
+            width: 60px;
+            height: 60px;
             flex-shrink: 0;
         }
 
         .brand-title {
-            font-size: 32px;
+            display: block;
+            font-size: 34px;
             font-weight: 900;
             letter-spacing: 3px;
             background: var(--gold-shimmer);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: 1.1;
+            line-height: 1.05;
         }
 
         .brand-sub {
@@ -121,7 +164,7 @@
             font-size: 13px;
             font-weight: 600;
             color: var(--ink-faint);
-            text-align: right;
+            margin-top: 2px;
         }
 
         .meta-bar {
@@ -135,7 +178,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 14px;
+            padding: 7px 14px;
             border-radius: 999px;
             background: var(--bg-card);
             border: 1px solid var(--line);
@@ -158,7 +201,7 @@
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            padding: 6px 14px;
+            padding: 7px 15px;
             border-radius: 999px;
             background: var(--bg-card);
             border: 1px solid var(--line);
@@ -190,27 +233,26 @@
             margin-top: 22px;
         }
 
-        @media (max-width: 640px) {
-            .panel { padding: 20px 16px; }
-            .grid { grid-template-columns: 1fr; gap: 14px; }
-        }
-
         .card {
             background: var(--bg-card);
             border-radius: var(--radius-card);
-            padding: 20px;
+            padding: 20px 22px;
             border: 1px solid var(--line);
             margin-top: 18px;
+            transition: var(--transition);
         }
 
-        .grid .card {
-            margin-top: 0;
+        .grid .card { margin-top: 0; }
+
+        .card:hover {
+            border-color: rgba(184, 148, 46, 0.3);
         }
 
         .card-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 10px;
             margin-bottom: 12px;
         }
 
@@ -221,8 +263,8 @@
         }
 
         .card-title-wrap svg {
-            width: 20px;
-            height: 20px;
+            width: 21px;
+            height: 21px;
             stroke: var(--gold);
             fill: none;
             stroke-width: 2;
@@ -234,6 +276,14 @@
             font-weight: 800;
             color: var(--ink);
         }
+
+        .card-hint {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold-deep);
+        }
+
+        [data-theme="dark"] .card-hint { color: var(--gold-light); }
 
         .input-box {
             display: flex;
@@ -263,6 +313,97 @@
             min-width: 0;
         }
 
+        /* ================= FEATURE TOGGLES ================= */
+        .toggle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .zeus-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--line);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .zeus-switch:hover {
+            border-color: var(--gold);
+        }
+
+        .zeus-switch input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .switch-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink-2);
+        }
+
+        .switch-label svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--ink-faint);
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .switch-track {
+            width: 38px;
+            height: 22px;
+            border-radius: 999px;
+            background: #cfc9bd;
+            position: relative;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .switch-track { background: #4a453d; }
+
+        .switch-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+        }
+
+        .zeus-switch input:checked + .switch-label {
+            color: var(--ink);
+        }
+
+        .zeus-switch input:checked + .switch-label svg {
+            stroke: var(--gold);
+        }
+
+        .zeus-switch input:checked ~ .switch-track {
+            background: var(--gold-shimmer);
+        }
+
+        .zeus-switch input:checked ~ .switch-track .switch-thumb {
+            right: 19px;
+        }
+
+        /* ================= ACTION & OUTPUT ================= */
         .action-row {
             display: flex;
             justify-content: center;
@@ -273,7 +414,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 13px 36px;
+            padding: 14px 38px;
             border: none;
             border-radius: 999px;
             background: var(--gold-shimmer);
@@ -291,9 +432,12 @@
             box-shadow: 0 10px 30px rgba(184, 148, 46, 0.38);
         }
 
+        .btn-primary.busy { opacity: 0.7; pointer-events: none; }
+        .btn-primary.done { background: linear-gradient(135deg, #1a8a4a, #126a38); }
+
         .btn-primary svg {
-            width: 20px;
-            height: 20px;
+            width: 21px;
+            height: 21px;
             stroke: currentColor;
             fill: none;
             stroke-width: 2;
@@ -318,9 +462,7 @@
             color: var(--gold-deep);
         }
 
-        [data-theme="dark"] .token-badge {
-            color: var(--gold-light);
-        }
+        [data-theme="dark"] .token-badge { color: var(--gold-light); }
 
         .link-preview {
             font-size: 14px;
@@ -336,9 +478,9 @@
         }
 
         .icon-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 13px;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
             border: 1px solid var(--line);
             background: var(--bg-card);
             color: var(--ink-2);
@@ -354,46 +496,435 @@
             color: var(--gold);
         }
 
+        .icon-btn.ok {
+            background: var(--success);
+            border-color: var(--success);
+            color: #fff;
+        }
+
         .icon-btn svg {
-            width: 19px;
-            height: 19px;
+            width: 20px;
+            height: 20px;
             stroke: currentColor;
             fill: none;
             stroke-width: 2;
         }
 
+        .panel-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 2px solid var(--line);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ink-2);
+            cursor: pointer;
+        }
+
+        .panel-footer strong {
+            font-size: 19px;
+            font-weight: 900;
+            background: var(--gold-shimmer);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .panel-footer svg {
+            width: 21px;
+            height: 21px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ================= FULL DASHBOARD OVERLAY ================= */
+        .dash-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9990;
+            background: rgba(12, 10, 8, 0.78);
+            backdrop-filter: blur(22px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .dash-overlay.active { display: flex; }
+
+        .dash-shell {
+            width: 100%;
+            max-width: 1380px;
+            height: 94vh;
+            background: var(--bg-panel);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow-overlay);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .dash-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--line);
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dash-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dash-brand-title {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: var(--gold-shimmer);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dash-brand-sub {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--ink-faint);
+        }
+
+        .dash-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pill-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--bg-card);
+            color: var(--ink-2);
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .pill-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .pill-btn.danger:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .pill-btn svg {
+            width: 17px;
+            height: 17px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .dash-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .dash-sidebar {
+            width: var(--sidebar-width);
+            border-left: 1px solid var(--line);
+            background: rgba(184, 148, 46, 0.04);
+            padding: 16px 12px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar-group-title {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--ink-faint);
+            padding: 6px 12px;
+        }
+
+        .nav-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            border-radius: 14px;
+            border: none;
+            background: none;
+            color: var(--ink-2);
+            font-family: var(--font-main);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 4px;
+            text-align: right;
+        }
+
+        .nav-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--gold-soft);
+            color: var(--gold-deep);
+        }
+
+        [data-theme="dark"] .nav-btn:hover,
+        [data-theme="dark"] .nav-btn.active {
+            color: var(--gold-light);
+        }
+
+        .nav-count {
+            margin-right: auto;
+            padding: 1px 10px;
+            border-radius: 999px;
+            background: var(--gold-soft);
+            color: var(--gold-deep);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        [data-theme="dark"] .nav-count { color: var(--gold-light); }
+
+        .dash-main {
+            flex: 1;
+            padding: 22px 26px;
+            overflow-y: auto;
+            min-width: 0;
+        }
+
+        .dash-view { display: none; }
+        .dash-view.active { display: block; animation: fadeUp 0.25s ease; }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-card);
+            padding: 18px 20px;
+        }
+
+        .stat-val {
+            font-size: 30px;
+            font-weight: 900;
+            background: var(--gold-shimmer);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .stat-lbl {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink-faint);
+            margin-top: 4px;
+        }
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-input);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 0 14px;
+        }
+
+        .search-box svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--ink-faint);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 10px 0;
+            font-family: var(--font-main);
+            font-size: 15px;
+            color: var(--ink);
+        }
+
+        .select-filter {
+            background: var(--bg-input);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 10px 14px;
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink);
+            outline: none;
+        }
+
+        .table-card {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+        }
+
+        .table-scroll { overflow-x: auto; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 640px;
+        }
+
+        th {
+            background: rgba(184, 148, 46, 0.08);
+            color: var(--gold-deep);
+            font-size: 13px;
+            font-weight: 800;
+            padding: 12px 14px;
+            text-align: right;
+            border-bottom: 1px solid var(--line);
+        }
+
+        [data-theme="dark"] th { color: var(--gold-light); }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--line);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink-2);
+        }
+
+        .status-chip {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .status-chip.active { background: rgba(26, 138, 74, 0.14); color: var(--success); }
+        .status-chip.disabled { background: rgba(217, 48, 37, 0.14); color: var(--danger); }
+        .status-chip.warn { background: rgba(200, 135, 25, 0.16); color: var(--warning); }
+
+        .mini-btn {
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: var(--bg-input);
+            color: var(--ink);
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-left: 4px;
+        }
+
+        .mini-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .mini-btn.danger:hover { border-color: var(--danger); color: var(--danger); }
+
+        .empty-state {
+            padding: 28px;
+            text-align: center;
+            color: var(--ink-faint);
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .log-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--line);
+            font-size: 14px;
+        }
+
+        .log-time {
+            color: var(--ink-faint);
+            font-size: 13px;
+            font-variant-numeric: tabular-nums;
+            min-width: 90px;
+        }
+
+        /* ================= MODALS & TOAST ================= */
         .modal-backdrop {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(12, 10, 8, 0.72);
-            backdrop-filter: blur(12px);
-            z-index: 999;
+            background: rgba(12, 10, 8, 0.74);
+            backdrop-filter: blur(14px);
+            z-index: 9999;
             align-items: center;
             justify-content: center;
             padding: 18px;
         }
 
-        .modal-backdrop.active {
-            display: flex;
-        }
+        .modal-backdrop.active { display: flex; }
 
         .modal-card {
-            max-width: 420px;
+            max-width: 440px;
             width: 100%;
             background: var(--bg-panel);
             border: 1px solid var(--line);
             border-radius: var(--radius-card);
-            padding: 26px 24px;
+            padding: 28px 24px;
             text-align: center;
+            box-shadow: var(--shadow-overlay);
         }
 
         .modal-card h3 {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 900;
             color: var(--gold-deep);
             margin-bottom: 6px;
         }
+
+        [data-theme="dark"] .modal-card h3 { color: var(--gold-light); }
 
         .modal-card p {
             font-size: 14px;
@@ -405,7 +936,7 @@
             display: flex;
             gap: 10px;
             justify-content: center;
-            margin-top: 14px;
+            margin-top: 16px;
         }
 
         .btn-sec {
@@ -440,65 +971,84 @@
             display: none;
         }
 
-        .error-text.show {
-            display: block;
-        }
+        .error-text.show { display: block; }
 
         .toast {
             position: fixed;
-            bottom: 22px;
+            bottom: 24px;
             left: 50%;
-            transform: translateX(-50%) translateY(16px);
+            transform: translateX(-50%) translateY(18px);
             background: var(--ink);
             color: #fff;
-            padding: 10px 22px;
+            padding: 11px 24px;
             border-radius: 999px;
             font-size: 14px;
             font-weight: 700;
             opacity: 0;
             pointer-events: none;
             transition: var(--transition);
-            z-index: 1000;
+            z-index: 10000;
         }
 
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+
+        @media (max-width: 760px) {
+            .panel { padding: 20px 16px; }
+            .grid, .toggle-grid { grid-template-columns: 1fr; }
+            .dash-sidebar { width: 64px; padding: 12px 6px; }
+            .sidebar-group-title, .nav-btn span:not(.nav-count) { display: none; }
+            .nav-btn { justify-content: center; padding: 12px; }
+            .dash-main { padding: 16px; }
         }
     </style>
 </head>
 <body>
     <div class="toast" id="toast"></div>
 
+    <!-- SECRET DOOR MODAL -->
     <div class="modal-backdrop" id="secretModal">
         <div class="modal-card">
             <h3>الباب السري — ZEUS</h3>
-            <p>أدخل رمز الوصول الخاص باللوحة</p>
+            <p>أدخل رمز الوصول الخاص بلوحة الإدارة</p>
             <div class="input-box">
                 <input type="password" id="secretCodeInput" placeholder="أدخل الرمز …" autocomplete="off" />
             </div>
             <div class="error-text" id="secretError">الرمز غير صحيح</div>
             <div class="modal-btns">
-                <button class="btn-conf" id="confirmSecretBtn">تأكيد</button>
-                <button class="btn-sec" id="cancelSecretBtn">إغلاق</button>
+                <button class="btn-conf" id="confirmSecretBtn">فتح اللوحة</button>
+                <button class="btn-sec" id="cancelSecretBtn">إلغاء</button>
             </div>
         </div>
     </div>
 
+    <!-- DEVELOPER ACCESS HISTORY MODAL -->
+    <div class="modal-backdrop" id="devHistoryModal">
+        <div class="modal-card" style="max-width: 520px; text-align: right;">
+            <h3 style="text-align: center;">سجل رموز الدخول</h3>
+            <p style="text-align: center;">الرموز المولّدة للجلسات الإدارية</p>
+            <div id="devHistoryContainer" style="max-height: 300px; overflow-y: auto;"></div>
+            <div class="modal-btns">
+                <button class="btn-sec" id="closeDevHistoryBtn">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN PANEL -->
     <main class="panel">
         <header class="top">
-            <button type="button" class="brand-lock-btn" id="zeusSecretBrand" title="رمز الباب السري مدمج في الشعار">
-                <!-- شعار ZEUS التقني مع رمز مفتاح/قفل الباب السري مدمج في قلب الشعار -->
+            <button type="button" class="brand-lock-btn" id="zeusSecretBrand" title="انقر 3 مرات أو اضغط Ctrl+Shift+D لفتح لوحة الإدارة">
+                <!-- شعار ZEUS التقني بـ SVG مع دمج رمز القفل/المفتاح السري في قلب الشعار -->
                 <svg class="zeus-emblem" viewBox="0 0 64 64" fill="none" aria-label="شعار ZEUS">
                     <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" stroke="#b8942e" stroke-width="2.4" fill="rgba(184,148,46,0.08)" />
                     <polygon points="32,10 50,21 50,43 32,54 14,43 14,21" stroke="#d9b84a" stroke-width="1.2" stroke-dasharray="4 3" />
-                    <!-- تجويف القفل المدمج في مركز الشعار -->
-                    <circle cx="32" cy="28" r="5.5" stroke="#b8942e" stroke-width="2.2" />
-                    <path d="M32 33.5V43.5M32 38.5H36.5" stroke="#b8942e" stroke-width="2.4" stroke-linecap="round" />
+                    <circle cx="32" cy="27" r="5.5" stroke="#b8942e" stroke-width="2.2" />
+                    <path d="M32 32.5V43.5M32 38.5H36.5" stroke="#b8942e" stroke-width="2.4" stroke-linecap="round" />
                 </svg>
                 <div>
                     <span class="brand-title">ZEUS</span>
-                    <span class="brand-sub">إدارة التوكنات وقاعدة البيانات</span>
+                    <span class="brand-sub">نظام إدارة التوكنات والبيانات</span>
                 </div>
             </button>
 
@@ -565,6 +1115,49 @@
             <div class="card-head">
                 <div class="card-title-wrap">
                     <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                    </svg>
+                    <span class="card-title">خصائص الرابط</span>
+                </div>
+                <span class="card-hint" id="enabledOptionsCount">1 خاصية مفعّلة</span>
+            </div>
+            <div class="toggle-grid">
+                <label class="zeus-switch">
+                    <input type="checkbox" id="optRedirect" checked />
+                    <span class="switch-label">
+                        <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round" /><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke-linecap="round" /></svg>
+                        توجيه تلقائي
+                    </span>
+                    <span class="switch-track"><span class="switch-thumb"></span></span>
+                </label>
+
+                <label class="zeus-switch">
+                    <input type="checkbox" id="optVerifyToken" checked />
+                    <span class="switch-label">
+                        <svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z" /><path d="M9 12l2 2 4-4" stroke-linecap="round" /></svg>
+                        تحقق التوكن
+                    </span>
+                    <span class="switch-track"><span class="switch-thumb"></span></span>
+                </label>
+
+                <label class="zeus-switch">
+                    <input type="checkbox" id="optAuditLog" checked />
+                    <span class="switch-label">
+                        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h12M4 18h8" stroke-linecap="round" /></svg>
+                        تسجيل العمليات
+                    </span>
+                    <span class="switch-track"><span class="switch-thumb"></span></span>
+                </label>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-head">
+                <div class="card-title-wrap">
+                    <svg viewBox="0 0 24 24">
                         <path d="M10 13a5 5 0 0 0 7.54.54l2.92-2.92a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke-linecap="round" />
                         <path d="M14 11a5 5 0 0 0-7.54-.54l-2.92 2.92a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke-linecap="round" />
                     </svg>
@@ -617,7 +1210,146 @@
                 </div>
             </div>
         </section>
+
+        <footer class="panel-footer" onclick="window.open('https://t.me/xx_8k', '_blank', 'noopener,noreferrer')">
+            <span>تم التطوير بواسطة</span>
+            <strong>أشرف</strong>
+            <svg viewBox="0 0 24 24">
+                <polygon points="12,2 20,6.5 20,17.5 12,22 4,17.5 4,6.5" />
+                <circle cx="12" cy="12" r="3.5" />
+            </svg>
+        </footer>
     </main>
+
+    <!-- FULL DASHBOARD OVERLAY -->
+    <div class="dash-overlay" id="dashOverlay">
+        <div class="dash-shell">
+            <header class="dash-header">
+                <div class="dash-brand">
+                    <span class="dash-brand-title">ZEUS</span>
+                    <span class="dash-brand-sub">لوحة الإدارة وقاعدة البيانات</span>
+                </div>
+                <div class="dash-top-actions">
+                    <button type="button" class="pill-btn" id="syncSheetBtn">
+                        <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 12a9 9 0 0 1 15-6.7L21 8" stroke-linecap="round" /><path d="M3 21v-5h5M21 3v5h-5" stroke-linecap="round" /></svg>
+                        <span>مزامنة الشيت</span>
+                    </button>
+                    <button type="button" class="pill-btn" id="exportJsonBtn">
+                        <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5" stroke-linecap="round" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round" /></svg>
+                        <span>تصدير JSON</span>
+                    </button>
+                    <button type="button" class="pill-btn danger" id="closeDashBtn">إغلاق اللوحة</button>
+                </div>
+            </header>
+
+            <div class="dash-body">
+                <aside class="dash-sidebar">
+                    <span class="sidebar-group-title">الأقسام</span>
+                    <button type="button" class="nav-btn active" data-view="overview">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /></svg>
+                        <span>نظرة عامة</span>
+                    </button>
+                    <button type="button" class="nav-btn" data-view="bots">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3" /><circle cx="12" cy="10" r="2.5" /><path d="M7 17c1.5-2 8.5-2 10 0" stroke-linecap="round" /></svg>
+                        <span>التوكنات والبوتات</span>
+                        <span class="nav-count" id="navBotsCount">0</span>
+                    </button>
+                    <button type="button" class="nav-btn" data-view="victims">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3" /></svg>
+                        <span>سجل الزيارات</span>
+                        <span class="nav-count" id="navVisitsCount">0</span>
+                    </button>
+                    <button type="button" class="nav-btn" data-view="logs">
+                        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h12M4 18h8" stroke-linecap="round" /></svg>
+                        <span>سجل العمليات</span>
+                    </button>
+                    <button type="button" class="nav-btn" data-view="settings">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke-linecap="round" /></svg>
+                        <span>الإعدادات</span>
+                    </button>
+                    <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line);">
+                        <button type="button" class="nav-btn" id="openDevHistoryBtn">
+                            <svg viewBox="0 0 24 24"><path d="M15 7a4 4 0 1 0-3.87 5H15l2 2 2-2 2 2 1-1-3-3h-4" stroke-linecap="round" /></svg>
+                            <span>سجل رموز المطور</span>
+                        </button>
+                    </div>
+                </aside>
+
+                <section class="dash-main">
+                    <!-- OVERVIEW -->
+                    <div class="dash-view active" id="view-overview">
+                        <div class="stats-row">
+                            <div class="stat-box"><div class="stat-val" id="statBots">0</div><div class="stat-lbl">إجمالي التوكنات</div></div>
+                            <div class="stat-box"><div class="stat-val" id="statActiveBots">0</div><div class="stat-lbl">التوكنات المفعّلة</div></div>
+                            <div class="stat-box"><div class="stat-val" id="statVisits">0</div><div class="stat-lbl">إجمالي الزيارات</div></div>
+                            <div class="stat-box"><div class="stat-val" id="statLogs">0</div><div class="stat-lbl">سجلات النظام</div></div>
+                        </div>
+                        <div class="table-card">
+                            <div style="padding: 14px 18px; border-bottom: 1px solid var(--line); font-weight: 800;">آخر العمليات المسجلة</div>
+                            <div id="overviewRecentLogs"><div class="empty-state">لا توجد سجلات بعد</div></div>
+                        </div>
+                    </div>
+
+                    <!-- BOTS & TOKENS -->
+                    <div class="dash-view" id="view-bots">
+                        <div class="toolbar">
+                            <div class="search-box">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" stroke-linecap="round" /></svg>
+                                <input type="text" id="botSearchInput" placeholder="بحث بالتوكن أو الرابط …" />
+                            </div>
+                        </div>
+                        <div class="table-card">
+                            <div class="table-scroll" id="botsTableContainer"><div class="empty-state">لا توجد توكنات مسجلة</div></div>
+                        </div>
+                    </div>
+
+                    <!-- VISITS -->
+                    <div class="dash-view" id="view-victims">
+                        <div class="toolbar">
+                            <div class="search-box">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" stroke-linecap="round" /></svg>
+                                <input type="text" id="visitSearchInput" placeholder="بحث في الزيارات …" />
+                            </div>
+                        </div>
+                        <div class="table-card">
+                            <div class="table-scroll" id="visitsTableContainer"><div class="empty-state">لا توجد زيارات مسجلة</div></div>
+                        </div>
+                    </div>
+
+                    <!-- LOGS -->
+                    <div class="dash-view" id="view-logs">
+                        <div class="toolbar">
+                            <div class="search-box">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" stroke-linecap="round" /></svg>
+                                <input type="text" id="logSearchInput" placeholder="بحث في سجل العمليات …" />
+                            </div>
+                            <select class="select-filter" id="logTypeFilter">
+                                <option value="all">جميع الحالات</option>
+                                <option value="success">نجاح</option>
+                                <option value="warning">تحذير</option>
+                                <option value="error">خطأ</option>
+                                <option value="info">معلومات</option>
+                            </select>
+                        </div>
+                        <div class="table-card" id="fullLogsContainer"><div class="empty-state">لا توجد سجلات</div></div>
+                    </div>
+
+                    <!-- SETTINGS -->
+                    <div class="dash-view" id="view-settings">
+                        <div class="card" style="margin-top: 0;">
+                            <div class="card-head">
+                                <span class="card-title">إدارة البيانات المحلية والمزامنة</span>
+                            </div>
+                            <p style="font-size: 14px; color: var(--ink-faint); margin-bottom: 14px;">
+                                يتم تخزين التوكنات في Google Sheet ومزامنتها محليًا لسرعة العرض.
+                            </p>
+                            <button type="button" class="pill-btn danger" id="clearLocalDataBtn">مسح الذاكرة المحلية المؤقتة</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 
     <script>
         (function () {
@@ -625,18 +1357,19 @@
 
             const GSHEET_URL = "https://script.google.com/macros/s/AKfycby8goJYYKtOM_EL7HchLK_XDq8vUMU0lmlQtCmrZYlNk5NgITn_uVg8gmM-rXK8kHs/exec";
 
-            function showToast(message) {
-                const el = document.getElementById("toast");
-                if (!el) return;
-                el.textContent = message;
-                el.classList.add("show");
-                clearTimeout(el._t);
-                el._t = setTimeout(() => el.classList.remove("show"), 2600);
+            function showToast(msg, variant) {
+                const t = document.getElementById("toast");
+                if (!t) return;
+                t.textContent = msg;
+                t.className = "toast " + (variant || "");
+                t.classList.add("show");
+                clearTimeout(t._timer);
+                t._timer = setTimeout(() => t.classList.remove("show"), 2600);
             }
 
-            // 1) الساعة بنظام 12 ساعة AM/PM بتوقيت القاهرة مع انتقال صحيح من 12 إلى 1
+            // 1) الساعة بنظام 12 ساعة AM/PM بتوقيت القاهرة مع ضمان الانتقال الصحيح من 12 إلى 1
             function formatCairo12Hour(dateObj) {
-                const cairoParts = new Intl.DateTimeFormat("en-US", {
+                const parts = new Intl.DateTimeFormat("en-US", {
                     timeZone: "Africa/Cairo",
                     hour: "2-digit",
                     minute: "2-digit",
@@ -647,16 +1380,16 @@
                 let hour = "12";
                 let minute = "00";
                 let second = "00";
-                let period = "AM";
+                let dayPeriod = "AM";
 
-                for (const part of cairoParts) {
-                    if (part.type === "hour") hour = part.value;
-                    else if (part.type === "minute") minute = part.value;
-                    else if (part.type === "second") second = part.value;
-                    else if (part.type === "dayPeriod") period = part.value.toUpperCase();
+                for (const p of parts) {
+                    if (p.type === "hour") hour = p.value;
+                    else if (p.type === "minute") minute = p.value;
+                    else if (p.type === "second") second = p.value;
+                    else if (p.type === "dayPeriod") dayPeriod = p.value.toUpperCase();
                 }
 
-                return `${hour}:${minute}:${second} ${period}`;
+                return `${hour}:${minute}:${second} ${dayPeriod}`;
             }
 
             function formatCairoDate(dateObj) {
@@ -668,46 +1401,118 @@
                 }).format(dateObj);
             }
 
-            function refreshClock() {
+            function tickClock() {
                 const now = new Date();
-                const clockEl = document.getElementById("cairoClock12");
-                const dateEl = document.getElementById("cairoDate");
-                if (clockEl) clockEl.textContent = formatCairo12Hour(now);
-                if (dateEl) dateEl.textContent = formatCairoDate(now);
+                const cEl = document.getElementById("cairoClock12");
+                const dEl = document.getElementById("cairoDate");
+                if (cEl) cEl.textContent = formatCairo12Hour(now);
+                if (dEl) dEl.textContent = formatCairoDate(now);
             }
+            tickClock();
+            setInterval(tickClock, 1000);
 
-            refreshClock();
-            setInterval(refreshClock, 1000);
-
-            // 2) السمة (فاتح / داكن)
+            // 2) السمة
             const themeBtn = document.getElementById("themeSwitchBtn");
             const themeText = document.getElementById("themeText");
-            let theme = localStorage.getItem("zeus_ui_theme") || "light";
+            let currentTheme = localStorage.getItem("zeus_theme") || "light";
 
-            function applyTheme(nextTheme) {
-                theme = nextTheme;
-                if (theme === "dark") {
+            function applyTheme(t) {
+                currentTheme = t;
+                if (t === "dark") {
                     document.documentElement.setAttribute("data-theme", "dark");
                     themeText.textContent = "داكن";
                 } else {
                     document.documentElement.removeAttribute("data-theme");
                     themeText.textContent = "فاتح";
                 }
-                localStorage.setItem("zeus_ui_theme", theme);
+                localStorage.setItem("zeus_theme", t);
+            }
+            applyTheme(currentTheme);
+            themeBtn.addEventListener("click", () => applyTheme(currentTheme === "light" ? "dark" : "light"));
+
+            // 3) عداد الخصائص
+            function updateOptionsCount() {
+                const checked = document.querySelectorAll(".zeus-switch input:checked").length;
+                const el = document.getElementById("enabledOptionsCount");
+                if (el) el.textContent = `${checked} خصائص مفعّلة`;
+            }
+            document.querySelectorAll(".zeus-switch input").forEach((cb) => cb.addEventListener("change", updateOptionsCount));
+            updateOptionsCount();
+
+            // 4) السجلات والمزامنة مع Google Sheet
+            function addLocalLog(type, message) {
+                const logs = JSON.parse(localStorage.getItem("zeus_logs") || "[]");
+                logs.push({ timestamp: Date.now(), type: type || "info", message });
+                if (logs.length > 500) logs.splice(0, logs.length - 500);
+                localStorage.setItem("zeus_logs", JSON.stringify(logs));
             }
 
-            applyTheme(theme);
-            themeBtn.addEventListener("click", () => applyTheme(theme === "light" ? "dark" : "light"));
+            async function postSheet(payload) {
+                if (!GSHEET_URL) return null;
+                try {
+                    const res = await fetch(GSHEET_URL, {
+                        method: "POST",
+                        headers: { "Content-Type": "text/plain;charset=utf-8" },
+                        body: JSON.stringify(payload)
+                    });
+                    return await res.json();
+                } catch {
+                    return null;
+                }
+            }
 
-            // 3) رمز الباب السري المدمج داخل شعار ZEUS
+            async function syncAllFromSheet() {
+                if (!GSHEET_URL) return null;
+                try {
+                    const res = await fetch(GSHEET_URL, { method: "GET" });
+                    const data = await res.json();
+                    if (!data || !data.ok) return null;
+
+                    if (Array.isArray(data.bots)) {
+                        localStorage.setItem("zeus_bots", JSON.stringify(data.bots));
+                    }
+                    if (Array.isArray(data.victims)) {
+                        localStorage.setItem("zeus_victims", JSON.stringify(data.victims));
+                    }
+                    if (Array.isArray(data.logs)) {
+                        localStorage.setItem("zeus_logs", JSON.stringify(data.logs));
+                    }
+                    return data;
+                } catch {
+                    return null;
+                }
+            }
+
+            // 5) الباب السري المدمج في شعار ZEUS
             const brandBtn = document.getElementById("zeusSecretBrand");
             const secretModal = document.getElementById("secretModal");
             const secretCodeInput = document.getElementById("secretCodeInput");
             const secretError = document.getElementById("secretError");
-            let brandClicks = 0;
-            let clickResetTimer = null;
+            const dashOverlay = document.getElementById("dashOverlay");
+            let clicks = 0;
+            let clickTimer = null;
+            let activeSessionCode = "";
 
-            function openSecretModal() {
+            function generateSessionCode() {
+                const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789abcdefghijkmnopqrstuvwxyz";
+                const arr = new Uint32Array(16);
+                crypto.getRandomValues(arr);
+                let code = "";
+                for (let i = 0; i < arr.length; i++) code += chars[arr[i] % chars.length];
+                return code;
+            }
+
+            function triggerSecretDoor() {
+                activeSessionCode = generateSessionCode();
+                const history = JSON.parse(localStorage.getItem("zeus_dev_codes") || "[]");
+                history.push({ code: activeSessionCode, time: formatCairo12Hour(new Date()) + " - " + formatCairoDate(new Date()) });
+                if (history.length > 30) history.shift();
+                localStorage.setItem("zeus_dev_codes", JSON.stringify(history));
+
+                // حفظ الرمز مؤقتًا في الجلسة لإمكانية التحقق الفوري
+                sessionStorage.setItem("zeus_current_gate_code", activeSessionCode);
+                console.info("ZEUS Gate Code:", activeSessionCode);
+
                 secretError.classList.remove("show");
                 secretCodeInput.value = "";
                 secretModal.classList.add("active");
@@ -715,21 +1520,19 @@
             }
 
             brandBtn.addEventListener("click", () => {
-                brandClicks += 1;
-                clearTimeout(clickResetTimer);
-                clickResetTimer = setTimeout(() => {
-                    brandClicks = 0;
-                }, 500);
-                if (brandClicks >= 3) {
-                    brandClicks = 0;
-                    openSecretModal();
+                clicks += 1;
+                clearTimeout(clickTimer);
+                clickTimer = setTimeout(() => { clicks = 0; }, 500);
+                if (clicks >= 3) {
+                    clicks = 0;
+                    triggerSecretDoor();
                 }
             });
 
             document.addEventListener("keydown", (e) => {
                 if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "d") {
                     e.preventDefault();
-                    openSecretModal();
+                    triggerSecretDoor();
                 }
             });
 
@@ -737,135 +1540,333 @@
                 secretModal.classList.remove("active");
             });
 
-            document.getElementById("confirmSecretBtn").addEventListener("click", () => {
+            document.getElementById("confirmSecretBtn").addEventListener("click", async () => {
                 const entered = secretCodeInput.value.trim();
-                const expected = sessionStorage.getItem("zeus_session_access_code") || "ZEUS-ADMIN-2026";
+                const expected = sessionStorage.getItem("zeus_current_gate_code");
                 if (entered && entered === expected) {
                     secretModal.classList.remove("active");
-                    showToast("تم التحقق من رمز الباب السري");
+                    dashOverlay.classList.add("active");
+                    await syncAllFromSheet();
+                    renderDashboard();
+                    showToast("تم فتح لوحة الإدارة", "success");
                 } else {
                     secretError.classList.add("show");
+                    addLocalLog("error", "محاولة دخول برمز غير صحيح إلى اللوحة");
                 }
             });
 
-            // 4) توليد توكن فريد غير مكرر بدون كشف بيانات الاعتماد في الرابط
-            async function createUniqueToken(seedInput) {
-                const existing = JSON.parse(localStorage.getItem("zeus_registered_tokens") || "[]");
-                const existingSet = new Set(existing.map((item) => String(item.shortToken).toUpperCase()));
+            document.getElementById("closeDashBtn").addEventListener("click", () => {
+                dashOverlay.classList.remove("active");
+            });
+
+            // 6) توليد توكن فريد ومنع التكرار + رابط عام قصير
+            async function buildUniqueToken(seed) {
+                const bots = JSON.parse(localStorage.getItem("zeus_bots") || "[]");
+                const existing = new Set(bots.map((b) => String(b.shortToken || "").toUpperCase()));
                 const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-                for (let attempt = 0; attempt < 10; attempt++) {
-                    const randomBytes = new Uint32Array(6);
-                    crypto.getRandomValues(randomBytes);
-                    const raw = `${seedInput}:${Date.now()}:${attempt}:${Array.from(randomBytes).join("-")}`;
+                for (let i = 0; i < 12; i++) {
+                    const rnd = new Uint32Array(4);
+                    crypto.getRandomValues(rnd);
+                    const raw = `${seed}:${Date.now()}:${i}:${Array.from(rnd).join("-")}`;
                     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(raw));
                     const bytes = new Uint8Array(digest);
                     let token = "";
-                    for (let i = 0; i < 6; i++) {
-                        token += alphabet[bytes[i] % alphabet.length];
-                    }
-                    if (!existingSet.has(token)) {
-                        return token;
-                    }
+                    for (let j = 0; j < 6; j++) token += alphabet[bytes[j] % alphabet.length];
+                    if (!existing.has(token)) return token;
                 }
-                throw new Error("Unable to generate a unique token");
+                throw new Error("Token collision");
             }
 
-            async function syncTokenToSheet(record) {
-                if (!GSHEET_URL) return null;
-                try {
-                    const res = await fetch(GSHEET_URL, {
-                        method: "POST",
-                        headers: { "Content-Type": "text/plain;charset=utf-8" },
-                        body: JSON.stringify({
-                            action: "register_bot",
-                            bot: record
-                        })
-                    });
-                    return await res.json();
-                } catch (err) {
-                    return null;
-                }
-            }
-
-            const createBtn = document.getElementById("createTokenBtn");
+            const createTokenBtn = document.getElementById("createTokenBtn");
             const tokenText = document.getElementById("generatedTokenText");
             const linkText = document.getElementById("generatedLinkText");
 
-            createBtn.addEventListener("click", async () => {
+            createTokenBtn.addEventListener("click", async () => {
                 const chatId = document.getElementById("chatIdField").value.trim();
                 const botToken = document.getElementById("botTokenField").value.trim();
                 const baseUrl = document.getElementById("baseUrlField").value.trim();
 
                 if (!chatId || !botToken || !baseUrl) {
-                    showToast("يرجى إدخال المعرّف والتوكن والرابط الأساسي");
+                    showToast("يرجى إكمال جميع الحقول أولًا", "error");
                     return;
                 }
 
                 try {
                     new URL(baseUrl);
                 } catch {
-                    showToast("الرابط الأساسي غير صالح");
+                    showToast("صيغة الرابط الأساسي غير صحيحة", "error");
                     return;
                 }
 
-                const shortToken = await createUniqueToken(`${chatId}:${botToken}:${baseUrl}`);
-                const cleanBase = `${window.location.origin}${window.location.pathname}`;
-                const publicLink = `${cleanBase}?t=${encodeURIComponent(shortToken)}`;
+                createTokenBtn.classList.add("busy");
+                try {
+                    const shortToken = await buildUniqueToken(`${chatId}:${botToken}:${baseUrl}`);
+                    const publicLink = `${window.location.origin}${window.location.pathname}?t=${encodeURIComponent(shortToken)}`;
+                    const features = {
+                        redirect: document.getElementById("optRedirect").checked,
+                        verifyToken: document.getElementById("optVerifyToken").checked,
+                        auditLog: document.getElementById("optAuditLog").checked
+                    };
 
-                const list = JSON.parse(localStorage.getItem("zeus_registered_tokens") || "[]");
-                const entry = {
-                    shortToken,
-                    chatId,
-                    botToken,
-                    baseUrl,
-                    active: true,
-                    createdAt: Date.now()
-                };
-                list.push(entry);
-                localStorage.setItem("zeus_registered_tokens", JSON.stringify(list));
+                    const bots = JSON.parse(localStorage.getItem("zeus_bots") || "[]");
+                    const record = {
+                        shortToken,
+                        chatId,
+                        baseUrl,
+                        featuresJson: JSON.stringify(features),
+                        active: true,
+                        createdAt: Date.now()
+                    };
+                    bots.push(record);
+                    localStorage.setItem("zeus_bots", JSON.stringify(bots));
 
-                await syncTokenToSheet({
-                    shortToken,
-                    chatId,
-                    baseUrl,
-                    active: true,
-                    createdAt: entry.createdAt
-                });
+                    await postSheet({
+                        action: "register_bot",
+                        bot: {
+                            shortToken,
+                            chatId,
+                            baseUrl,
+                            features,
+                            active: true,
+                            createdAt: record.createdAt
+                        }
+                    });
 
-                tokenText.textContent = shortToken;
-                linkText.textContent = publicLink;
-                showToast("تم إنشاء التوكن وحفظه بنجاح");
+                    addLocalLog("success", `تم إنشاء التوكن ${shortToken} وحفظه في قاعدة البيانات`);
+                    tokenText.textContent = shortToken;
+                    linkText.textContent = publicLink;
+                    createTokenBtn.classList.remove("busy");
+                    createTokenBtn.classList.add("done");
+                    showToast("تم إنشاء التوكن والرابط الآمن", "success");
+                    setTimeout(() => createTokenBtn.classList.remove("done"), 1800);
+                } catch {
+                    createTokenBtn.classList.remove("busy");
+                    showToast("تعذر إنشاء التوكن", "error");
+                }
             });
 
             document.getElementById("copyResultBtn").addEventListener("click", () => {
-                const val = linkText.textContent.trim();
-                if (!val || !val.includes("?t=")) {
-                    showToast("أنشئ رابطًا أولًا");
+                const url = linkText.textContent.trim();
+                if (!url.includes("?t=")) {
+                    showToast("لا يوجد رابط لنسخه بعد");
                     return;
                 }
-                navigator.clipboard?.writeText(val).then(() => showToast("تم نسخ الرابط")).catch(() => {});
+                navigator.clipboard?.writeText(url).then(() => {
+                    const btn = document.getElementById("copyResultBtn");
+                    btn.classList.add("ok");
+                    showToast("تم نسخ الرابط", "success");
+                    setTimeout(() => btn.classList.remove("ok"), 1200);
+                }).catch(() => {});
             });
 
             document.getElementById("openResultBtn").addEventListener("click", () => {
-                const val = linkText.textContent.trim();
-                if (!val || !val.includes("?t=")) {
-                    showToast("أنشئ رابطًا أولًا");
+                const url = linkText.textContent.trim();
+                if (!url.includes("?t=")) {
+                    showToast("لا يوجد رابط لفتحه بعد");
                     return;
                 }
-                window.open(val, "_blank", "noopener,noreferrer");
+                window.open(url, "_blank", "noopener,noreferrer");
             });
 
-            // إتاحة دالة اختبار الساعة 12 ساعة في console
-            window.testCairo12HourTransitions = function () {
-                const samples = [
-                    new Date("2026-11-27T10:59:59Z"), // 12:59:59 AM Cairo
-                    new Date("2026-11-27T11:00:00Z"), // 01:00:00 AM Cairo
-                    new Date("2026-11-27T09:59:59Z"), // 11:59:59 PM Cairo (previous day)
-                    new Date("2026-11-27T10:00:00Z")  // 12:00:00 AM Cairo
-                ];
-                return samples.map((d) => ({ utc: d.toISOString(), cairo12h: formatCairo12Hour(d) }));
+            // 7) منطق لوحة التحكم (Dashboard)
+            function renderDashboard() {
+                const bots = JSON.parse(localStorage.getItem("zeus_bots") || "[]");
+                const visits = JSON.parse(localStorage.getItem("zeus_victims") || "[]");
+                const logs = JSON.parse(localStorage.getItem("zeus_logs") || "[]");
+
+                const activeBots = bots.filter((b) => b.active !== false && String(b.active).toLowerCase() !== "false");
+
+                document.getElementById("navBotsCount").textContent = bots.length;
+                document.getElementById("navVisitsCount").textContent = visits.length;
+                document.getElementById("statBots").textContent = bots.length;
+                document.getElementById("statActiveBots").textContent = activeBots.length;
+                document.getElementById("statVisits").textContent = visits.length;
+                document.getElementById("statLogs").textContent = logs.length;
+
+                renderRecentLogs(logs);
+                renderBotsTable(bots);
+                renderVisitsTable(visits);
+                renderFullLogs(logs);
+            }
+
+            function renderRecentLogs(logs) {
+                const box = document.getElementById("overviewRecentLogs");
+                if (!logs.length) {
+                    box.innerHTML = '<div class="empty-state">لا توجد سجلات بعد</div>';
+                    return;
+                }
+                box.innerHTML = logs.slice(-6).reverse().map((l) => `
+                    <div class="log-item">
+                        <span class="log-time">${formatCairo12Hour(new Date(Number(l.timestamp) || Date.now()))}</span>
+                        <span class="status-chip ${l.type === "success" ? "active" : (l.type === "error" ? "disabled" : "warn")}">${l.type || "info"}</span>
+                        <span>${l.message || ""}</span>
+                    </div>
+                `).join("");
+            }
+
+            function renderBotsTable(bots) {
+                const container = document.getElementById("botsTableContainer");
+                if (!bots.length) {
+                    container.innerHTML = '<div class="empty-state">لا توجد توكنات مسجلة</div>';
+                    return;
+                }
+                const rows = bots.map((b) => {
+                    const isAct = b.active !== false && String(b.active).toLowerCase() !== "false";
+                    return `
+                        <tr>
+                            <td><strong>${b.shortToken || "—"}</strong></td>
+                            <td dir="ltr">${b.baseUrl || "—"}</td>
+                            <td><span class="status-chip ${isAct ? "active" : "disabled"}">${isAct ? "مفعّل" : "معطّل"}</span></td>
+                            <td>${b.createdAt ? formatCairoDate(new Date(Number(b.createdAt))) : "—"}</td>
+                            <td>
+                                <button type="button" class="mini-btn" onclick="window.toggleBotState('${b.shortToken}', ${!isAct})">${isAct ? "تعطيل" : "تفعيل"}</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join("");
+
+                container.innerHTML = `
+                    <table>
+                        <thead><tr><th>التوكن</th><th>الرابط الأساسي</th><th>الحالة</th><th>تاريخ الإنشاء</th><th>إجراء</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                `;
+            }
+
+            function renderVisitsTable(visits) {
+                const container = document.getElementById("visitsTableContainer");
+                if (!visits.length) {
+                    container.innerHTML = '<div class="empty-state">لا توجد زيارات مسجلة</div>';
+                    return;
+                }
+                const rows = visits.slice().reverse().map((v) => `
+                    <tr>
+                        <td>${v.shortToken || "—"}</td>
+                        <td>${v.tokenStatus || "—"}</td>
+                        <td>${v.ip || "—"}</td>
+                        <td>${v.browser || "—"}</td>
+                        <td>${v.timestamp ? formatCairoDate(new Date(v.timestamp)) : "—"}</td>
+                    </tr>
+                `).join("");
+
+                container.innerHTML = `
+                    <table>
+                        <thead><tr><th>التوكن</th><th>حالة التوكن</th><th>IP</th><th>المتصفح</th><th>التاريخ</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                `;
+            }
+
+            function renderFullLogs(logs) {
+                const container = document.getElementById("fullLogsContainer");
+                if (!logs.length) {
+                    container.innerHTML = '<div class="empty-state">لا توجد سجلات</div>';
+                    return;
+                }
+                container.innerHTML = logs.slice().reverse().map((l) => `
+                    <div class="log-item" data-type="${l.type || "info"}">
+                        <span class="log-time">${formatCairo12Hour(new Date(Number(l.timestamp) || Date.now()))}</span>
+                        <span class="status-chip ${l.type === "success" ? "active" : (l.type === "error" ? "disabled" : "warn")}">${l.type || "info"}</span>
+                        <span>${l.message || ""}</span>
+                    </div>
+                `).join("");
+            }
+
+            window.toggleBotState = async function (token, nextActive) {
+                const bots = JSON.parse(localStorage.getItem("zeus_bots") || "[]");
+                const idx = bots.findIndex((b) => String(b.shortToken) === String(token));
+                if (idx >= 0) {
+                    bots[idx].active = nextActive;
+                    localStorage.setItem("zeus_bots", JSON.stringify(bots));
+                }
+                await postSheet({ action: "set_bot_active", shortToken: token, active: nextActive });
+                addLocalLog("info", `تغيير حالة التوكن ${token} إلى ${nextActive ? "مفعّل" : "معطّل"}`);
+                renderDashboard();
+                showToast("تم تحديث حالة التوكن", "success");
             };
+
+            document.querySelectorAll(".nav-btn[data-view]").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const target = btn.getAttribute("data-view");
+                    document.querySelectorAll(".nav-btn[data-view]").forEach((b) => b.classList.toggle("active", b === btn));
+                    document.querySelectorAll(".dash-view").forEach((v) => v.classList.toggle("active", v.id === `view-${target}`));
+                });
+            });
+
+            document.getElementById("syncSheetBtn").addEventListener("click", async () => {
+                showToast("جارٍ المزامنة مع Google Sheet …");
+                await syncAllFromSheet();
+                renderDashboard();
+                showToast("تمت المزامنة", "success");
+            });
+
+            document.getElementById("exportJsonBtn").addEventListener("click", () => {
+                const dump = {
+                    exportedAt: new Date().toISOString(),
+                    bots: JSON.parse(localStorage.getItem("zeus_bots") || "[]"),
+                    victims: JSON.parse(localStorage.getItem("zeus_victims") || "[]"),
+                    logs: JSON.parse(localStorage.getItem("zeus_logs") || "[]")
+                };
+                const blob = new Blob([JSON.stringify(dump, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "zeus-database-export.json";
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+
+            document.getElementById("clearLocalDataBtn").addEventListener("click", () => {
+                ["zeus_bots", "zeus_victims", "zeus_logs"].forEach((k) => localStorage.removeItem(k));
+                renderDashboard();
+                showToast("تم مسح البيانات المحلية", "success");
+            });
+
+            document.getElementById("openDevHistoryBtn").addEventListener("click", () => {
+                const list = JSON.parse(localStorage.getItem("zeus_dev_codes") || "[]");
+                const box = document.getElementById("devHistoryContainer");
+                box.innerHTML = list.length
+                    ? list.slice().reverse().map((item) => `
+                        <div class="log-item" style="justify-content: space-between;">
+                            <strong>${item.code}</strong>
+                            <span class="log-time">${item.time}</span>
+                        </div>
+                    `).join("")
+                    : '<div class="empty-state">لا توجد رموز مسجلة بعد</div>';
+                document.getElementById("devHistoryModal").classList.add("active");
+            });
+
+            document.getElementById("closeDevHistoryBtn").addEventListener("click", () => {
+                document.getElementById("devHistoryModal").classList.remove("active");
+            });
+
+            // فلاتر البحث في الداشبورد
+            document.getElementById("botSearchInput").addEventListener("input", function () {
+                const q = this.value.toLowerCase();
+                document.querySelectorAll("#botsTableContainer tbody tr").forEach((tr) => {
+                    tr.style.display = tr.textContent.toLowerCase().includes(q) ? "" : "none";
+                });
+            });
+
+            document.getElementById("visitSearchInput").addEventListener("input", function () {
+                const q = this.value.toLowerCase();
+                document.querySelectorAll("#visitsTableContainer tbody tr").forEach((tr) => {
+                    tr.style.display = tr.textContent.toLowerCase().includes(q) ? "" : "none";
+                });
+            });
+
+            function applyLogFilter() {
+                const q = document.getElementById("logSearchInput").value.toLowerCase();
+                const typeVal = document.getElementById("logTypeFilter").value;
+                document.querySelectorAll("#fullLogsContainer .log-item").forEach((item) => {
+                    const matchText = item.textContent.toLowerCase().includes(q);
+                    const matchType = typeVal === "all" || item.getAttribute("data-type") === typeVal;
+                    item.style.display = matchText && matchType ? "" : "none";
+                });
+            }
+            document.getElementById("logSearchInput").addEventListener("input", applyLogFilter);
+            document.getElementById("logTypeFilter").addEventListener("change", applyLogFilter);
         })();
     </script>
 </body>
