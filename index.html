@@ -8,6 +8,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Zain:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
+        /* ضع ملف الخط المرفق في نفس المجلد باسم zain-swashes.ttf لتفعيله محليًا */
+        @font-face {
+            font-family: 'ZainMobileSwashes';
+            src: url('./zain-swashes.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -17,11 +26,11 @@
         :root {
             --bg-body: #f5f0e8;
             --bg-panel: rgba(255, 253, 249, 0.92);
-            --bg-card: rgba(248, 244, 237, 0.85);
+            --bg-card: rgba(248, 244, 237, 0.86);
             --bg-input: rgba(240, 235, 225, 0.82);
             --ink: #1e1c18;
             --ink-2: #4a4640;
-            --ink-faint: #7c766a;
+            --ink-faint: #7b7569;
             --gold: #b8942e;
             --gold-deep: #96761e;
             --gold-light: #d9b84a;
@@ -33,7 +42,7 @@
             --danger: #d93025;
             --radius-card: 22px;
             --radius-input: 14px;
-            --font-main: 'Zain', sans-serif;
+            --font-main: 'ZainMobileSwashes', 'Zain', sans-serif;
             --transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
             --sidebar-width: 260px;
             --shadow-main: 0 16px 48px rgba(0, 0, 0, 0.08);
@@ -53,10 +62,13 @@
             --shadow-main: 0 16px 48px rgba(0, 0, 0, 0.45);
         }
 
+        body, button, input, select, textarea, table {
+            font-family: var(--font-main);
+        }
+
         body {
             background: var(--bg-body);
             color: var(--ink);
-            font-family: var(--font-main);
             font-size: 16px;
             min-height: 100vh;
             display: flex;
@@ -93,7 +105,7 @@
             box-shadow: var(--shadow-main);
             position: relative;
             z-index: 1;
-            animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         @keyframes fadeUp {
@@ -206,7 +218,6 @@
             background: var(--bg-card);
             border: 1px solid var(--line);
             color: var(--ink-2);
-            font-family: var(--font-main);
             font-size: 14px;
             font-weight: 700;
             cursor: pointer;
@@ -243,10 +254,7 @@
         }
 
         .grid .card { margin-top: 0; }
-
-        .card:hover {
-            border-color: rgba(184, 148, 46, 0.3);
-        }
+        .card:hover { border-color: rgba(184, 148, 46, 0.3); }
 
         .card-head {
             display: flex;
@@ -306,14 +314,12 @@
             outline: none;
             background: transparent;
             padding: 12px 0;
-            font-family: var(--font-main);
             font-size: 15px;
             font-weight: 600;
             color: var(--ink);
             min-width: 0;
         }
 
-        /* ================= FEATURE TOGGLES ================= */
         .toggle-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -334,9 +340,7 @@
             position: relative;
         }
 
-        .zeus-switch:hover {
-            border-color: var(--gold);
-        }
+        .zeus-switch:hover { border-color: var(--gold); }
 
         .zeus-switch input {
             position: absolute;
@@ -387,23 +391,11 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
         }
 
-        .zeus-switch input:checked + .switch-label {
-            color: var(--ink);
-        }
+        .zeus-switch input:checked + .switch-label { color: var(--ink); }
+        .zeus-switch input:checked + .switch-label svg { stroke: var(--gold); }
+        .zeus-switch input:checked ~ .switch-track { background: var(--gold-shimmer); }
+        .zeus-switch input:checked ~ .switch-track .switch-thumb { right: 19px; }
 
-        .zeus-switch input:checked + .switch-label svg {
-            stroke: var(--gold);
-        }
-
-        .zeus-switch input:checked ~ .switch-track {
-            background: var(--gold-shimmer);
-        }
-
-        .zeus-switch input:checked ~ .switch-track .switch-thumb {
-            right: 19px;
-        }
-
-        /* ================= ACTION & OUTPUT ================= */
         .action-row {
             display: flex;
             justify-content: center;
@@ -419,7 +411,6 @@
             border-radius: 999px;
             background: var(--gold-shimmer);
             color: #fff;
-            font-family: var(--font-main);
             font-size: 17px;
             font-weight: 800;
             cursor: pointer;
@@ -472,10 +463,7 @@
             margin-top: 2px;
         }
 
-        .icon-actions {
-            display: flex;
-            gap: 10px;
-        }
+        .icon-actions { display: flex; gap: 10px; }
 
         .icon-btn {
             width: 44px;
@@ -491,24 +479,9 @@
             transition: var(--transition);
         }
 
-        .icon-btn:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        .icon-btn.ok {
-            background: var(--success);
-            border-color: var(--success);
-            color: #fff;
-        }
-
-        .icon-btn svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-        }
+        .icon-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .icon-btn.ok { background: var(--success); border-color: var(--success); color: #fff; }
+        .icon-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
 
         .panel-footer {
             display: flex;
@@ -532,15 +505,9 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .panel-footer svg {
-            width: 21px;
-            height: 21px;
-            stroke: var(--gold);
-            fill: none;
-            stroke-width: 2;
-        }
+        .panel-footer svg { width: 21px; height: 21px; stroke: var(--gold); fill: none; stroke-width: 2; }
 
-        /* ================= FULL DASHBOARD OVERLAY ================= */
+        /* ================= DASHBOARD OVERLAY ================= */
         .dash-overlay {
             position: fixed;
             inset: 0;
@@ -578,11 +545,7 @@
             flex-wrap: wrap;
         }
 
-        .dash-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .dash-brand { display: flex; align-items: center; gap: 12px; }
 
         .dash-brand-title {
             font-size: 26px;
@@ -593,18 +556,9 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .dash-brand-sub {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--ink-faint);
-        }
+        .dash-brand-sub { font-size: 13px; font-weight: 700; color: var(--ink-faint); }
 
-        .dash-top-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .dash-top-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
         .pill-btn {
             display: inline-flex;
@@ -615,36 +569,17 @@
             border: 1px solid var(--line);
             background: var(--bg-card);
             color: var(--ink-2);
-            font-family: var(--font-main);
             font-size: 14px;
             font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
         }
 
-        .pill-btn:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
+        .pill-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .pill-btn.danger:hover { border-color: var(--danger); color: var(--danger); }
+        .pill-btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-        .pill-btn.danger:hover {
-            border-color: var(--danger);
-            color: var(--danger);
-        }
-
-        .pill-btn svg {
-            width: 17px;
-            height: 17px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .dash-body {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
+        .dash-body { display: flex; flex: 1; overflow: hidden; }
 
         .dash-sidebar {
             width: var(--sidebar-width);
@@ -673,7 +608,6 @@
             border: none;
             background: none;
             color: var(--ink-2);
-            font-family: var(--font-main);
             font-size: 15px;
             font-weight: 700;
             cursor: pointer;
@@ -682,24 +616,9 @@
             text-align: right;
         }
 
-        .nav-btn svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            flex-shrink: 0;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--gold-soft);
-            color: var(--gold-deep);
-        }
-
-        [data-theme="dark"] .nav-btn:hover,
-        [data-theme="dark"] .nav-btn.active {
-            color: var(--gold-light);
-        }
+        .nav-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
+        .nav-btn:hover, .nav-btn.active { background: var(--gold-soft); color: var(--gold-deep); }
+        [data-theme="dark"] .nav-btn:hover, [data-theme="dark"] .nav-btn.active { color: var(--gold-light); }
 
         .nav-count {
             margin-right: auto;
@@ -713,13 +632,7 @@
 
         [data-theme="dark"] .nav-count { color: var(--gold-light); }
 
-        .dash-main {
-            flex: 1;
-            padding: 22px 26px;
-            overflow-y: auto;
-            min-width: 0;
-        }
-
+        .dash-main { flex: 1; padding: 22px 26px; overflow-y: auto; min-width: 0; }
         .dash-view { display: none; }
         .dash-view.active { display: block; animation: fadeUp 0.25s ease; }
 
@@ -746,20 +659,9 @@
             line-height: 1.1;
         }
 
-        .stat-lbl {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--ink-faint);
-            margin-top: 4px;
-        }
+        .stat-lbl { font-size: 14px; font-weight: 700; color: var(--ink-faint); margin-top: 4px; }
 
-        .toolbar {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
+        .toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
 
         .search-box {
             flex: 1;
@@ -773,13 +675,7 @@
             padding: 0 14px;
         }
 
-        .search-box svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--ink-faint);
-            fill: none;
-            stroke-width: 2;
-        }
+        .search-box svg { width: 18px; height: 18px; stroke: var(--ink-faint); fill: none; stroke-width: 2; }
 
         .search-box input {
             flex: 1;
@@ -787,7 +683,6 @@
             outline: none;
             background: transparent;
             padding: 10px 0;
-            font-family: var(--font-main);
             font-size: 15px;
             color: var(--ink);
         }
@@ -797,7 +692,6 @@
             border: 1px solid var(--line);
             border-radius: 14px;
             padding: 10px 14px;
-            font-family: var(--font-main);
             font-size: 14px;
             font-weight: 700;
             color: var(--ink);
@@ -813,11 +707,7 @@
 
         .table-scroll { overflow-x: auto; }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 640px;
-        }
+        table { width: 100%; border-collapse: collapse; min-width: 640px; }
 
         th {
             background: rgba(184, 148, 46, 0.08);
@@ -857,7 +747,6 @@
             border: 1px solid var(--line);
             background: var(--bg-input);
             color: var(--ink);
-            font-family: var(--font-main);
             font-size: 13px;
             font-weight: 700;
             cursor: pointer;
@@ -865,15 +754,7 @@
         }
 
         .mini-btn:hover { border-color: var(--gold); color: var(--gold); }
-        .mini-btn.danger:hover { border-color: var(--danger); color: var(--danger); }
-
-        .empty-state {
-            padding: 28px;
-            text-align: center;
-            color: var(--ink-faint);
-            font-size: 15px;
-            font-weight: 700;
-        }
+        .empty-state { padding: 28px; text-align: center; color: var(--ink-faint); font-size: 15px; font-weight: 700; }
 
         .log-item {
             display: flex;
@@ -888,7 +769,7 @@
             color: var(--ink-faint);
             font-size: 13px;
             font-variant-numeric: tabular-nums;
-            min-width: 90px;
+            min-width: 105px;
         }
 
         /* ================= MODALS & TOAST ================= */
@@ -917,27 +798,11 @@
             box-shadow: var(--shadow-overlay);
         }
 
-        .modal-card h3 {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--gold-deep);
-            margin-bottom: 6px;
-        }
-
+        .modal-card h3 { font-size: 24px; font-weight: 900; color: var(--gold-deep); margin-bottom: 6px; }
         [data-theme="dark"] .modal-card h3 { color: var(--gold-light); }
+        .modal-card p { font-size: 14px; color: var(--ink-faint); margin-bottom: 16px; }
 
-        .modal-card p {
-            font-size: 14px;
-            color: var(--ink-faint);
-            margin-bottom: 16px;
-        }
-
-        .modal-btns {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 16px;
-        }
+        .modal-btns { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
 
         .btn-sec {
             padding: 9px 22px;
@@ -945,7 +810,6 @@
             border: 1px solid var(--line);
             background: var(--bg-input);
             color: var(--ink-2);
-            font-family: var(--font-main);
             font-size: 15px;
             font-weight: 700;
             cursor: pointer;
@@ -957,20 +821,12 @@
             border: none;
             background: var(--gold-shimmer);
             color: #fff;
-            font-family: var(--font-main);
             font-size: 15px;
             font-weight: 800;
             cursor: pointer;
         }
 
-        .error-text {
-            color: var(--danger);
-            font-size: 14px;
-            font-weight: 700;
-            margin-top: 10px;
-            display: none;
-        }
-
+        .error-text { color: var(--danger); font-size: 14px; font-weight: 700; margin-top: 10px; display: none; }
         .error-text.show { display: block; }
 
         .toast {
@@ -1122,7 +978,7 @@
                     </svg>
                     <span class="card-title">خصائص الرابط</span>
                 </div>
-                <span class="card-hint" id="enabledOptionsCount">1 خاصية مفعّلة</span>
+                <span class="card-hint" id="enabledOptionsCount">3 خصائص مفعّلة</span>
             </div>
             <div class="toggle-grid">
                 <label class="zeus-switch">
@@ -1276,7 +1132,6 @@
                 </aside>
 
                 <section class="dash-main">
-                    <!-- OVERVIEW -->
                     <div class="dash-view active" id="view-overview">
                         <div class="stats-row">
                             <div class="stat-box"><div class="stat-val" id="statBots">0</div><div class="stat-lbl">إجمالي التوكنات</div></div>
@@ -1290,7 +1145,6 @@
                         </div>
                     </div>
 
-                    <!-- BOTS & TOKENS -->
                     <div class="dash-view" id="view-bots">
                         <div class="toolbar">
                             <div class="search-box">
@@ -1303,7 +1157,6 @@
                         </div>
                     </div>
 
-                    <!-- VISITS -->
                     <div class="dash-view" id="view-victims">
                         <div class="toolbar">
                             <div class="search-box">
@@ -1316,7 +1169,6 @@
                         </div>
                     </div>
 
-                    <!-- LOGS -->
                     <div class="dash-view" id="view-logs">
                         <div class="toolbar">
                             <div class="search-box">
@@ -1334,7 +1186,6 @@
                         <div class="table-card" id="fullLogsContainer"><div class="empty-state">لا توجد سجلات</div></div>
                     </div>
 
-                    <!-- SETTINGS -->
                     <div class="dash-view" id="view-settings">
                         <div class="card" style="margin-top: 0;">
                             <div class="card-head">
@@ -1367,7 +1218,7 @@
                 t._timer = setTimeout(() => t.classList.remove("show"), 2600);
             }
 
-            // 1) الساعة بنظام 12 ساعة AM/PM بتوقيت القاهرة مع ضمان الانتقال الصحيح من 12 إلى 1
+            // الساعة بنظام 12 ساعة AM/PM بتوقيت القاهرة مع ضمان الانتقال الصحيح من 12 إلى 1
             function formatCairo12Hour(dateObj) {
                 const parts = new Intl.DateTimeFormat("en-US", {
                     timeZone: "Africa/Cairo",
@@ -1411,7 +1262,7 @@
             tickClock();
             setInterval(tickClock, 1000);
 
-            // 2) السمة
+            // تبديل السمة (فاتح / داكن)
             const themeBtn = document.getElementById("themeSwitchBtn");
             const themeText = document.getElementById("themeText");
             let currentTheme = localStorage.getItem("zeus_theme") || "light";
@@ -1430,7 +1281,7 @@
             applyTheme(currentTheme);
             themeBtn.addEventListener("click", () => applyTheme(currentTheme === "light" ? "dark" : "light"));
 
-            // 3) عداد الخصائص
+            // عداد الخصائص
             function updateOptionsCount() {
                 const checked = document.querySelectorAll(".zeus-switch input:checked").length;
                 const el = document.getElementById("enabledOptionsCount");
@@ -1439,7 +1290,7 @@
             document.querySelectorAll(".zeus-switch input").forEach((cb) => cb.addEventListener("change", updateOptionsCount));
             updateOptionsCount();
 
-            // 4) السجلات والمزامنة مع Google Sheet
+            // السجلات والمزامنة مع Google Sheet
             function addLocalLog(type, message) {
                 const logs = JSON.parse(localStorage.getItem("zeus_logs") || "[]");
                 logs.push({ timestamp: Date.now(), type: type || "info", message });
@@ -1483,7 +1334,7 @@
                 }
             }
 
-            // 5) الباب السري المدمج في شعار ZEUS
+            // الباب السري المدمج في شعار ZEUS
             const brandBtn = document.getElementById("zeusSecretBrand");
             const secretModal = document.getElementById("secretModal");
             const secretCodeInput = document.getElementById("secretCodeInput");
@@ -1491,7 +1342,6 @@
             const dashOverlay = document.getElementById("dashOverlay");
             let clicks = 0;
             let clickTimer = null;
-            let activeSessionCode = "";
 
             function generateSessionCode() {
                 const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789abcdefghijkmnopqrstuvwxyz";
@@ -1503,15 +1353,13 @@
             }
 
             function triggerSecretDoor() {
-                activeSessionCode = generateSessionCode();
+                const code = generateSessionCode();
                 const history = JSON.parse(localStorage.getItem("zeus_dev_codes") || "[]");
-                history.push({ code: activeSessionCode, time: formatCairo12Hour(new Date()) + " - " + formatCairoDate(new Date()) });
+                history.push({ code, time: `${formatCairo12Hour(new Date())} - ${formatCairoDate(new Date())}` });
                 if (history.length > 30) history.shift();
                 localStorage.setItem("zeus_dev_codes", JSON.stringify(history));
-
-                // حفظ الرمز مؤقتًا في الجلسة لإمكانية التحقق الفوري
-                sessionStorage.setItem("zeus_current_gate_code", activeSessionCode);
-                console.info("ZEUS Gate Code:", activeSessionCode);
+                sessionStorage.setItem("zeus_current_gate_code", code);
+                console.info("ZEUS Gate Code:", code);
 
                 secretError.classList.remove("show");
                 secretCodeInput.value = "";
@@ -1559,7 +1407,7 @@
                 dashOverlay.classList.remove("active");
             });
 
-            // 6) توليد توكن فريد ومنع التكرار + رابط عام قصير
+            // توليد توكن فريد ومنع التكرار + رابط عام قصير دون كشف الأسرار
             async function buildUniqueToken(seed) {
                 const bots = JSON.parse(localStorage.getItem("zeus_bots") || "[]");
                 const existing = new Set(bots.map((b) => String(b.shortToken || "").toUpperCase()));
@@ -1669,12 +1517,11 @@
                 window.open(url, "_blank", "noopener,noreferrer");
             });
 
-            // 7) منطق لوحة التحكم (Dashboard)
+            // إدارة الداشبورد
             function renderDashboard() {
                 const bots = JSON.parse(localStorage.getItem("zeus_bots") || "[]");
                 const visits = JSON.parse(localStorage.getItem("zeus_victims") || "[]");
                 const logs = JSON.parse(localStorage.getItem("zeus_logs") || "[]");
-
                 const activeBots = bots.filter((b) => b.active !== false && String(b.active).toLowerCase() !== "false");
 
                 document.getElementById("navBotsCount").textContent = bots.length;
@@ -1841,7 +1688,6 @@
                 document.getElementById("devHistoryModal").classList.remove("active");
             });
 
-            // فلاتر البحث في الداشبورد
             document.getElementById("botSearchInput").addEventListener("input", function () {
                 const q = this.value.toLowerCase();
                 document.querySelectorAll("#botsTableContainer tbody tr").forEach((tr) => {
@@ -1867,6 +1713,16 @@
             }
             document.getElementById("logSearchInput").addEventListener("input", applyLogFilter);
             document.getElementById("logTypeFilter").addEventListener("change", applyLogFilter);
+
+            window.testCairoClock12h = function () {
+                const samples = [
+                    new Date("2026-11-27T10:59:59Z"),
+                    new Date("2026-11-27T11:00:00Z"),
+                    new Date("2026-11-27T09:59:59Z"),
+                    new Date("2026-11-27T10:00:00Z")
+                ];
+                return samples.map((d) => ({ utc: d.toISOString(), cairo12h: formatCairo12Hour(d) }));
+            };
         })();
     </script>
 </body>
